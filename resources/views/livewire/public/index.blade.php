@@ -1,7 +1,7 @@
 <div>
-    <div class="flex items-center justify-center h-screen mx-16 mb-10" style="margin-top: 105px;">
+    <div class="flex items-center justify-center h-screen mx-8 mb-10" style="margin-top: 105px;">
         <div x-data="carousel" class="relative w-full">
-            <div class="overflow-hidden">
+            <div class="overflow-hidden rounded-2xl">
                 <div class="flex transition-transform" style="transform: translateX(-{{ $current }} * 100%);">
                     <div class="flex-shrink-0">
                         <img 
@@ -23,12 +23,12 @@
                 </div>
             </div>
             
-            <div class="absolute h-full top-0 -left-16 -right-16 flex justify-between">
+            <div class="absolute h-full top-0 left-0 right-0 flex justify-between">
                 <button x-on:click="togglePrevious" class="w-20 flex items-center justify-center">
-                    <x-icons.caret-left class="w-10 h-10" fill="#FFF" />
+                    <x-icons.caret-left class="w-14 h-14" fill="#f8e046" />
                 </button>
                 <button x-on:click="toggleNext" class="w-20 flex items-center justify-center">
-                    <x-icons.caret-right class="w-10 h-10" fill="#FFF" />
+                    <x-icons.caret-right class="w-14 h-14" fill="#f8e046" />
                 </button>
             </div>
         </div>

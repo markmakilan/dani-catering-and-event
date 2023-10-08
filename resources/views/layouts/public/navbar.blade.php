@@ -18,26 +18,26 @@
                         ])>
                         <span>Home</span>
                     </a>
-                    <a href="/about-us"
+                    <a wire:navigate href="/about-us"
                         @class([
                             'rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white', 
                             'bg-yellow-300 text-white' => request()->routeIs('about-us')
                         ])>
                         <span>About Us</span>
                     </a>
-                    <a href="/services"
+                    <a wire:navigate href="/services"
                         @class([
                             'rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white', 
                             'bg-yellow-300 text-white' => request()->routeIs('services')
                         ])>
                         <span>Services</span>
                     </a>
-                    <a href="/portfolio"
+                    <a wire:navigate href="/portfolio"
                         @class([
                             'rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white', 
                             'bg-yellow-300 text-white' => request()->routeIs('portfolio')
                         ])>
-                        <span>Portoflio</span>
+                        <span>Portfolio</span>
                     </a>
                 </div>
             </div>

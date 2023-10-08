@@ -11,7 +11,7 @@
                     <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
 
                     <h3 class="mt-3 text-lg text-center font-semibold leading-6 text-white">
-                        <a href="#">
+                        <a wire:navigate href="/packages">
                             <span class="absolute inset-0"></span>
                             Wedding Planning Services
                         </a>
@@ -25,7 +25,7 @@
                     <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
 
                     <h3 class="mt-3 text-lg text-center font-semibold leading-6 text-white">
-                        <a href="#">
+                        <a href="/packages">
                             <span class="absolute inset-0"></span>
                             Catering Services
                         </a>
@@ -39,7 +39,7 @@
                     <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
 
                     <h3 class="mt-3 text-lg text-center font-semibold leading-6 text-white">
-                        <a href="#">
+                        <a href="/packages">
                             <span class="absolute inset-0"></span>
                             Event Planning Services
                         </a>
