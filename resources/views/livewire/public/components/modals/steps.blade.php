@@ -283,23 +283,23 @@
                                 <h3 class="text-xl font-bold text-center mb-10">Reservation Form</h3>
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Name:</span>
-                                    <input type="text" class="flex-1 bg-transparent rounded-md px-3 py-1">
+                                    <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none">
                                 </div>
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Contact Info:</span>
-                                    <input type="text" class="flex-1 bg-transparent rounded-md px-3 py-1">
+                                    <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none">
                                 </div>
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Date of Use:</span>
-                                    <input type="text" class="flex-1 bg-transparent rounded-md px-3 py-1">
+                                    <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none">
                                 </div>
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Location (Venue):</span>
-                                    <input type="text" class="flex-1 bg-transparent rounded-md px-3 py-1">
+                                    <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none">
                                 </div>
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Email:</span>
-                                    <input type="text" class="flex-1 bg-transparent rounded-md px-3 py-1">
+                                    <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none">
                                 </div>
                             </div>
                         </div>
@@ -329,23 +329,23 @@
                                 </ul>
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Name:</span>
-                                    <input type="text" class="flex-1 bg-transparent rounded-md px-3 py-1">
+                                    <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none">
                                 </div>
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Amount:</span>
-                                    <input type="text" class="flex-1 bg-transparent rounded-md px-3 py-1">
+                                    <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none">
                                 </div>
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Reference No.:</span>
-                                    <input type="text" class="flex-1 bg-transparent rounded-md px-3 py-1">
+                                    <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none">
                                 </div>
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Receipt:</span>
-                                    <input type="text" class="flex-1 bg-transparent rounded-md px-3 py-1">
+                                    <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none">
                                 </div>
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Email:</span>
-                                    <input type="text" class="flex-1 bg-transparent rounded-md px-3 py-1">
+                                    <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none">
                                 </div>
                             </div>
                         </div>
@@ -367,23 +367,23 @@
                                 <h3 class="text-xl font-bold text-center mb-10">Confirm Reservation</h3>
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Name:</span>
-                                    <input type="text" class="flex-1 bg-transparent rounded-md px-3 py-1">
+                                    <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none">
                                 </div>
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Contact Info:</span>
-                                    <input type="text" class="flex-1 bg-transparent rounded-md px-3 py-1">
+                                    <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none">
                                 </div>
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Date of Use:</span>
-                                    <input type="text" class="flex-1 bg-transparent rounded-md px-3 py-1">
+                                    <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none">
                                 </div>
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Location (Venue):</span>
-                                    <input type="text" class="flex-1 bg-transparent rounded-md px-3 py-1">
+                                    <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none">
                                 </div>
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Down Payment:</span>
-                                    <input type="text" class="flex-1 bg-transparent rounded-md px-3 py-1">
+                                    <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none">
                                 </div>
                             </div>
                         </div>
