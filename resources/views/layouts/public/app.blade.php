@@ -12,6 +12,7 @@
 <body class="bg-yellow-300">
     <div id="app">
         @include('layouts.public.navbar')
+        
         @yield('content')
     </div>
 </body>

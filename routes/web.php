@@ -23,3 +23,8 @@ Route::get('/services', App\Livewire\Public\Services::class)->name('services');
 Route::get('/portfolio', App\Livewire\Public\Portfolio::class)->name('portfolio');
 
 Route::get('/packages', App\Livewire\Public\Packages::class)->name('packages');
+
+Route::prefix('/admin')->group(function () {
+    Route::get('/dashboard', App\Livewire\Admin\Dashboard\Index::class)->name('dashboard');
+    Route::get('/transaction-record', App\Livewire\Admin\TransactionRecord\Index::class)->name('transaction-record');
+});
