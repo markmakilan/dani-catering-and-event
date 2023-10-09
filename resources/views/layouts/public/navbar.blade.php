@@ -11,7 +11,7 @@
             
             <div class="flex-1 hidden sm:ml-6 sm:block">
                 <div class="flex justify-evenly space-x-4">
-                    <a href="/home"
+                    <a href="/"
                         @class([
                             'rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white', 
                             'bg-yellow-300 text-white' => request()->routeIs('home')
@@ -44,6 +44,7 @@
 
             <div class="hidden sm:ml-6 sm:block">
                 <div class="flex items-center">
+                    @auth
                     <!-- Profile dropdown -->
                     <div class="relative ml-3" x-data="{ open: false, toggle() { this.open =! this.open } }">
                         <div>
@@ -62,10 +63,18 @@
                             <!-- Active: "bg-gray-100", Not Active: "" -->
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                                 id="user-menu-item-0">Your Profile</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                            <a href="/logout" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                                 id="user-menu-item-2">Sign out</a>
                         </div>
                     </div>
+                    @else
+                    <div class="flex items-center gap-2">
+                        <a wire:navigate href="/login"
+                            class="rounded-md px-3 py-2 text-sm font-medium bg-gray-800 text-white hover:bg-gray-700 hover:text-white">
+                            <span>Login</span>
+                        </a>
+                    </div>
+                    @endauth
                 </div>
             </div>
             <div class="-mr-2 flex sm:hidden">

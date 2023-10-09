@@ -17,14 +17,17 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/home', App\Livewire\Public\Index::class)->name('home');
-Route::get('/about-us', App\Livewire\Public\AboutUs::class)->name('about-us');
-Route::get('/services', App\Livewire\Public\Services::class)->name('services');
-Route::get('/portfolio', App\Livewire\Public\Portfolio::class)->name('portfolio');
+Route::get('/', App\Livewire\Public\Index::class)->name('home');
+Route::get('about-us', App\Livewire\Public\AboutUs::class)->name('about-us');
+Route::get('services', App\Livewire\Public\Services::class)->name('services');
+Route::get('portfolio', App\Livewire\Public\Portfolio::class)->name('portfolio');
+Route::get('packages', App\Livewire\Public\Packages::class)->name('packages');
 
-Route::get('/packages', App\Livewire\Public\Packages::class)->name('packages');
+Route::get('login', App\Livewire\Public\Login::class)->name('login');
+Route::get('logout', [App\Http\Controllers\UserController::class, 'logout']);
+Route::get('register', App\Livewire\Public\Register::class)->name('register');
 
-Route::prefix('/admin')->group(function () {
-    Route::get('/dashboard', App\Livewire\Admin\Dashboard\Index::class)->name('dashboard');
-    Route::get('/transaction-record', App\Livewire\Admin\TransactionRecord\Index::class)->name('transaction-record');
+Route::prefix('admin')->middleware('auth')->group(function () {
+    Route::get('dashboard', App\Livewire\Admin\Dashboard\Index::class)->name('dashboard');
+    Route::get('transaction-record', App\Livewire\Admin\TransactionRecord\Index::class)->name('transaction-record');
 });
