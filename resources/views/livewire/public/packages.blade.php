@@ -89,7 +89,7 @@
             </div>
         </div>
 
-        <div class="fixed bottom-0 left-0 right-0 mx-8 mb-2">
+        <div x-show="! steps_modal" class="fixed bottom-0 left-0 right-0 mx-8 mb-2">
             <div class="bg-yellow-300 border border-black rounded-2xl px-8 py-3">
                 <div class="flex items-center justify-end gap-3">
                     <button class="bg-black rounded-md px-3 py-1" x-on:click="steps_modal = true, step = 'confirmation'">

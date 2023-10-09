@@ -1,4 +1,4 @@
-<div x-show="{{ $modal_id }}">
+<div x-show="{{ $modal_id }}" style="display: none;">
     <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="fixed inset-0 bg-black bg-opacity-80 transition-opacity"></div>
         <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
