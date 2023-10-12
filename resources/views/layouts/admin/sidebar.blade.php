@@ -41,11 +41,13 @@
                 <li class="mt-auto">
                     <ul role="list" class="-mx-2 space-y-1">
                         <li class="relative flex rounded-l-full text-gray-400 items-center justify-between">
-                            <a href="#"
-                                class="group flex items-center gap-x-3 p-2 text-sm leading-6 font-semibold">
-                                <x-icons.logout class="w-5 h-5" fill="#9ba3ae" />
-                                <span>Logout</span>
-                            </a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button class="group flex items-center gap-x-3 p-2 text-sm leading-6 font-semibold">
+                                    <x-icons.logout class="w-5 h-5" fill="#9ba3ae" />
+                                    <span>Logout</span>
+                                </button>
+                            </form>
                         </li>
                     </ul>
                 </li>

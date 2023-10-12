@@ -24,7 +24,7 @@ Route::get('portfolio', App\Livewire\Public\Portfolio::class)->name('portfolio')
 Route::get('packages', App\Livewire\Public\Packages::class)->name('packages');
 
 Route::get('login', App\Livewire\Public\Login::class)->name('login');
-Route::get('logout', [App\Http\Controllers\UserController::class, 'logout']);
+Route::post('logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
 Route::get('register', App\Livewire\Public\Register::class)->name('register');
 
 Route::prefix('admin')->middleware('auth')->group(function () {
