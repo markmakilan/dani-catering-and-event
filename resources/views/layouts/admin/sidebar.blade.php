@@ -48,6 +48,19 @@
                             <span class="absolute right-0 rounded-l-full bg-yellow-300 w-5 h-16"></span>
                             @endif
                         </li>
+                        <li @class([ 'relative flex rounded-l-full text-gray-400 items-center justify-between'
+                            , 'bg-yellow-300 text-black'=> request()->routeIs('packages')
+                            ])>
+                            <a href="/admin/packages"
+                                class="group flex items-center gap-x-3 p-2 text-sm leading-6 font-semibold">
+                                <x-icons.list-check class="w-6 h-6"
+                                    stroke="{{ request()->routeIs('packages') ? '#000' : '#9ba3ae' }}" />
+                                Packages
+                            </a>
+                            @if (request()->routeIs('packages'))
+                            <span class="absolute right-0 rounded-l-full bg-yellow-300 w-5 h-16"></span>
+                            @endif
+                        </li>
                     </ul>
                 </li>
 

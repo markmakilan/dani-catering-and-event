@@ -7,16 +7,16 @@ use Livewire\Component;
 class EditService extends Component
 {
     public $modal;
-    
-    public $id;
     public $name;
     public $status;
 
     public $service = [];
 
     public function mount() {
-        $this->name = $this->service->name;
-        $this->status = $this->service->status;
+        if ($this->service) {
+            $this->name = $this->service->name;
+            $this->status = $this->service->status;
+        }
     }
 
     public function update() {

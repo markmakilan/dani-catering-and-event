@@ -6,13 +6,12 @@ use Livewire\Component;
 
 use App\Models\Service;
 
-
 class Index extends Component
 {
-    public $edit_service_modal = false;
-
     #[Reactive] 
     public $service = [];
+
+    public $edit_service_modal = false;
 
     public $services = [];
 
@@ -20,9 +19,9 @@ class Index extends Component
         $this->services = $this->services();
     }
 
-    public function toggleEditServiceModal($id) {
+    public function toggleEditServiceModal(Service $service) {
         $this->edit_service_modal = !$this->edit_service_modal;
-        $this->service = Service::find($id);
+        $this->service = $service;
     }
     
     public function services() {
