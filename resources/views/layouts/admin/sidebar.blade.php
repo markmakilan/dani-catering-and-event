@@ -12,7 +12,7 @@
                         <li @class([ 'relative flex rounded-l-full text-gray-400 items-center justify-between'
                             , 'bg-yellow-300 text-black'=> request()->routeIs('dashboard')
                             ])>
-                            <a wire:navigate href="/admin/dashboard"
+                            <a href="/admin/dashboard"
                                 class="group flex items-center gap-x-3 p-2 text-sm leading-6 font-semibold">
                                 <x-icons.home class="w-6 h-6"
                                     fill="{{ request()->routeIs('dashboard') ? '#000' : '#9ba3ae' }}" />
@@ -22,16 +22,29 @@
                             <span class="absolute right-0 rounded-l-full bg-yellow-300 w-5 h-16"></span>
                             @endif
                         </li>
-                        <li @class([ 'relative flex rounded-l-full text-gray-400 items-center justify-between'
-                            , 'bg-yellow-300 text-black'=> request()->routeIs('transaction-record')
+                        <li @class(['relative flex rounded-l-full text-gray-400 items-center justify-between'
+                            , 'bg-yellow-300 text-black'=> request()->routeIs('transaction-records')
                             ])>
-                            <a wire:navigate href="/admin/transaction-record"
+                            <a href="/admin/transaction-records"
                                 class="group flex items-center gap-x-3 p-2 text-sm leading-6 font-semibold">
                                 <x-icons.museum class="w-6 h-6"
-                                    fill="{{ request()->routeIs('transaction-record') ? '#000' : '#9ba3ae' }}" />
+                                    fill="{{ request()->routeIs('transaction-records') ? '#000' : '#9ba3ae' }}" />
                                 Transaction Records
                             </a>
-                            @if (request()->routeIs('transaction-record'))
+                            @if (request()->routeIs('transaction-records'))
+                            <span class="absolute right-0 rounded-l-full bg-yellow-300 w-5 h-16"></span>
+                            @endif
+                        </li>
+                        <li @class([ 'relative flex rounded-l-full text-gray-400 items-center justify-between'
+                            , 'bg-yellow-300 text-black'=> request()->routeIs('services')
+                            ])>
+                            <a href="/admin/services"
+                                class="group flex items-center gap-x-3 p-2 text-sm leading-6 font-semibold">
+                                <x-icons.services class="w-6 h-6"
+                                    fill="{{ request()->routeIs('services') ? '#000' : '#9ba3ae' }}" />
+                                Services
+                            </a>
+                            @if (request()->routeIs('services'))
                             <span class="absolute right-0 rounded-l-full bg-yellow-300 w-5 h-16"></span>
                             @endif
                         </li>
