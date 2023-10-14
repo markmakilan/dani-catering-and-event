@@ -8,10 +8,8 @@ use App\Models\Package;
 
 class Index extends Component
 {
-    #[Reactive] 
-    public $package = [];
-
     public $edit_package_modal = false;
+    public $delete_package_modal = false;
 
     public $packages = [];
 
@@ -19,9 +17,16 @@ class Index extends Component
         $this->packages = $this->packages();
     }
 
-    public function toggleEditPackageModal(Package $package) {
+    public function toggleEditPackageModal($id) {
         $this->edit_package_modal = !$this->edit_package_modal;
-        $this->package = $package;
+
+        $this->dispatch('selected-package', package: $id);
+    }
+
+    public function toggleDeletePackageModal($id) {
+        $this->delete_package_modal = !$this->delete_package_modal;
+
+        $this->dispatch('selected-package', package: $id);
     }
     
     public function packages() {

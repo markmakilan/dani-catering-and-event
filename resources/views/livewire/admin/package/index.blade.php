@@ -35,7 +35,14 @@
                     <td class="px-3 py-2 text-sm text-gray-500">{{ $package->no_of_pax }}</td>
                     <td class="px-3 py-2 text-sm text-gray-500">{{ $package->status ? 'Active' : 'Inactive' }}</td>
                     <td class="px-3 py-2 text-sm text-gray-500">
-                        <button wire:click="toggleEditPackageModal({{ $package->id }})">Edit</button>
+                        <div class="flex items-center gap-3">
+                            <button wire:click="toggleEditPackageModal({{ $package->id }})">
+                                <span class="hover:text-blue-600">Edit</span>
+                            </button>
+                            <button wire:click="toggleDeletePackageModal({{ $package->id }})">
+                                <span class="hover:text-red-700">Delete</span>
+                            </button>
+                        </div>
                     </td>
                 </tr>
                 @empty
@@ -46,13 +53,15 @@
     </div>
 
     @livewire('admin.package.modals.add-package', ['modal' => 'add_package_modal'])
-    @livewire('admin.package.modals.edit-package', ['modal' => 'edit_package_modal', 'package' => $package])
+    @livewire('admin.package.modals.edit-package', ['modal' => 'edit_package_modal'])
+    @livewire('admin.package.modals.delete-package', ['modal' => 'delete_package_modal'])
 
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.data('package', () => ({
                 add_package_modal: false,
                 edit_package_modal: @entangle('edit_package_modal'),
+                delete_package_modal: @entangle('delete_package_modal'),
      
                 toggleAddPackageModal() {
                     this.add_package_modal = ! this.add_package_modal

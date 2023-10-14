@@ -17,8 +17,6 @@ class AddService extends Component
             'status' => true
         ]);
 
-        $this->js('alert("Service has been successfully added.")');
-
         return redirect()->route('services');
     }
 

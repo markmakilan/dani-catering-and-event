@@ -25,8 +25,6 @@ class EditService extends Component
             'status' => $this->status,
         ]);
 
-        $this->js('alert("Service has been successfully updated.")');
-
         return redirect()->route('services');
     }
 
