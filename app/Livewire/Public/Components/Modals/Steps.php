@@ -19,7 +19,8 @@ class Steps extends Component
     public $reservation = [];
     public $payment = [];
 
-    public function submit() {
+    public function submit() 
+    {
         DB::transaction(function () {
             $transaction = Transaction::create([
                 'package_id' => $this->package->id,
@@ -28,7 +29,7 @@ class Steps extends Component
                 'customize_total_amount' => collect(data_get($this->customize, '*.*'))->sum('amount'),
                 'addons' => (object) $this->addons,
                 'customize' => (object) $this->customize,
-                'remarks' => 'pending'
+                'remarks' => null
             ]);
 
             Reservation::create([
@@ -48,10 +49,11 @@ class Steps extends Component
                 'ref_no' => $this->payment['ref_no'],
                 'email' => $this->payment['email']
             ]);
-        });
 
-        
-        dd($this);
+            $this->js('alert("Your reservation has been submitted.")');
+
+            return redirect()->route('home');
+        });
     }
 
     public function increment($type, $keys) {
