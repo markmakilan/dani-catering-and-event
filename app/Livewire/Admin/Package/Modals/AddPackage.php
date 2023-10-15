@@ -16,12 +16,14 @@ class AddPackage extends Component
     public $service_id;
     public $no_of_pax;
     public $inclusions;
-    public $flowers = false;
-    public $chairs = false;
-    public $tables = false;
+
+    public $flowers = [];
+    public $chairs = [];
+    public $tables = [];
 
     public $services = [];
     public $addons = [];
+    public $customize = [];
 
     public function mount() 
     {
@@ -30,31 +32,48 @@ class AddPackage extends Component
 
     public function updated($key, $value) 
     {
-        switch ($key) {
+        $keys = explode('.', $key);
+
+        switch ($keys[0]) {
             case 'flowers':
             case 'chairs':
             case 'tables':
                 if ($value) {
-                    $this->addons[$key][] = [
-                        'name' => '',
-                        'price' => 0
-                    ];
+                    
+                    if ($keys[1] == 'addons') {
+                        $this->addons[$keys[0]][] = [
+                            'name' => '',
+                            'price' => 0
+                        ];
+                    }
+                    else {
+                        $this->customize[$keys[0]][] = [
+                            'name' => '',
+                            'price' => 0
+                        ];
+                    }
                 }
                 else {
-                    unset($this->addons[$key]);
+                    if ($keys[1] == 'addons') {
+                        unset($this->addons[$keys[0]]);
+                    }
+                    else {
+                        unset($this->customize[$keys[0]]);
+                    }
                 }
                 break;
         }
     }
 
     public function save() 
-    {
+    {   
         Package::create([
             'name' => $this->name,
             'service_id' => $this->service_id,
             'no_of_pax' => $this->no_of_pax,
             'inclusions' => $this->inclusions,
             'addons' => (object) $this->addons,
+            'customize' => (object) $this->customize,
             'status' => true
         ]);
 
@@ -74,9 +93,28 @@ class AddPackage extends Component
         unset($this->addons[$type][$key]);
 
         if (count($this->addons[$type]) == 0) {
-            unset($this->addons[$key]);
+            unset($this->addons[$type]);
 
-            $this->reset($type);
+            $this->$type['addons'] = false;
+        }
+    }
+
+    public function addCustomizeItemType($type) 
+    {
+        $this->customize[$type][] = [
+            'name' => '',
+            'price' => 0
+        ];
+    }
+
+    public function removeCustomizeItemType($type, $key) 
+    {
+        unset($this->customize[$type][$key]);
+
+        if (count($this->customize[$type]) == 0) {
+            unset($this->customize[$type]);
+
+            $this->$type['customize'] = false;
         }
     }
 

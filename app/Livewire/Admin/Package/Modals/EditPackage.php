@@ -16,13 +16,15 @@ class EditPackage extends Component
     public $no_of_pax;
     public $inclusions;
     public $status;
-    public $flowers = false;
-    public $chairs = false;
-    public $tables = false;
+
+    public $flowers = [];
+    public $chairs = [];
+    public $tables = [];
 
     public $package = [];
     public $services = [];
     public $addons = [];
+    public $customize = [];
 
     public function mount() 
     {
@@ -37,6 +39,7 @@ class EditPackage extends Component
             'no_of_pax' => $this->no_of_pax,
             'inclusions' => $this->inclusions,
             'addons' => (object) $this->addons,
+            'customize' => (object) $this->customize,
             'status' => $this->status
         ]);
 
@@ -51,27 +54,57 @@ class EditPackage extends Component
         $this->service_id = $package->service_id;
         $this->no_of_pax = $package->no_of_pax;
         $this->inclusions = $package->inclusions;
-        $this->addons = json_decode(json_encode($package->addons), true);
+        $this->addons = json_decode(json_encode($package->addons), true) ?? [];
+        $this->customize = json_decode(json_encode($package->customize), true) ?? [];
         $this->status = $package->status;
-        $this->flowers = data_get($package->addons, 'flowers') ? true : false;
-        $this->chairs = data_get($package->addons, 'chairs') ? true : false;
-        $this->tables = data_get($package->addons, 'tables') ? true : false;
+
+        
+        $this->flowers = [
+            'addons' => data_get($package->addons, 'flowers') ? true : false,
+            'customize' => data_get($package->customize, 'flowers') ? true : false,
+        ];
+        
+        $this->chairs = [
+            'addons' => data_get($package->addons, 'chairs') ? true : false,
+            'customize' => data_get($package->customize, 'chairs') ? true : false,
+        ];
+
+        $this->tables = [
+            'addons' => data_get($package->addons, 'tables') ? true : false,
+            'customize' => data_get($package->customize, 'tables') ? true : false,
+        ];
     }
 
     public function updated($key, $value) 
     {
-        switch ($key) {
+        $keys = explode('.', $key);
+
+        switch ($keys[0]) {
             case 'flowers':
             case 'chairs':
             case 'tables':
                 if ($value) {
-                    $this->addons[$key][] = [
-                        'name' => '',
-                        'price' => 0
-                    ];
+                    
+                    if ($keys[1] == 'addons') {
+                        $this->addons[$keys[0]][] = [
+                            'name' => '',
+                            'price' => 0
+                        ];
+                    }
+                    else {
+                        $this->customize[$keys[0]][] = [
+                            'name' => '',
+                            'price' => 0
+                        ];
+                    }
                 }
                 else {
-                    unset($this->addons[$key]);
+                    if ($keys[1] == 'addons') {
+                        unset($this->addons[$keys[0]]);
+                    }
+                    else {
+                        unset($this->customize[$keys[0]]);
+                    }
                 }
                 break;
         }
@@ -90,9 +123,28 @@ class EditPackage extends Component
         unset($this->addons[$type][$key]);
 
         if (count($this->addons[$type]) == 0) {
-            unset($this->addons[$key]);
+            unset($this->addons[$type]);
 
-            $this->reset($type);
+            $this->$type['addons'] = false;
+        }
+    }
+
+    public function addCustomizeItemType($type) 
+    {
+        $this->customize[$type][] = [
+            'name' => '',
+            'price' => 0
+        ];
+    }
+
+    public function removeCustomizeItemType($type, $key) 
+    {
+        unset($this->customize[$type][$key]);
+
+        if (count($this->customize[$type]) == 0) {
+            unset($this->customize[$type]);
+
+            $this->$type['customize'] = false;
         }
     }
 

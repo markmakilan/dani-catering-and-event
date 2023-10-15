@@ -49,49 +49,96 @@
                             <ul>
                                 <li>
                                     <label for="add-flower" class="space-x-2">
-                                        <input type="checkbox" id="add-flower" wire:model.live="flowers">
+                                        <input type="checkbox" id="add-flower" wire:model.live="flowers.addons">
                                         <span>Flower</span>
                                     </label>
                                 </li>
                                 <li>
                                     <label for="add-chair" class="space-x-2">
-                                        <input type="checkbox" id="add-chair" wire:model.live="chairs">
+                                        <input type="checkbox" id="add-chair" wire:model.live="chairs.addons">
                                         <span>Chair</span>
                                     </label>
                                 </li>
                                 <li>
                                     <label for="add-table" class="space-x-2">
-                                        <input type="checkbox" id="add-table" wire:model.live="tables">
+                                        <input type="checkbox" id="add-table" wire:model.live="tables.addons">
                                         <span>Table</span>
                                     </label>
                                 </li>
                             </ul>
 
                             <ul>
-                                @if (count($addons) > 0)
-                                @foreach ($addons as $type => $addon)
+                                @forelse ($addons as $type => $addon)
                                 <li class="space-y-1">
                                     <div class="border-t my-2"></div>
                                     <span class="font-semibold capitalize">{{ $type }}</span>
                                     <div class="space-y-1">
                                         @foreach ($addon as $key => $value)
                                         <div class="flex items-center gap-3">
-                                            <input type="text" class="w-full border border-gray-300 rounded-lg px-3 py-1.5" placeholder="Name" wire:model="addons.{{ $type }}.{{ $key }}.name">
-                                            <input type="number" class="w-full border border-gray-300 rounded-lg px-3 py-1.5" placeholder="Price" wire:model="addons.{{ $type }}.{{ $key }}.price">
+                                            <input type="text" class="w-full border border-gray-300 rounded-lg px-3 py-0.5" placeholder="Name" wire:model="addons.{{ $type }}.{{ $key }}.name">
+                                            <input type="number" class="w-full border border-gray-300 rounded-lg px-3 py-0.5" placeholder="Price" wire:model="addons.{{ $type }}.{{ $key }}.price">
                                             <div class="flex items-center gap-3">
-                                                <button class="border rounded-lg p-1.5"  wire:click="removeAddonItemType('{{ $type }}', {{ $key }})">
-                                                    <x-icons.trash class="w-6 h-6" />
+                                                <button  wire:click="removeAddonItemType('{{ $type }}', {{ $key }})">
+                                                    <x-icons.trash class="w-5 h-5" />
                                                 </button>
-                                                <button @class(['border rounded-lg p-1.5', 'invisible' => ! $loop->last]) wire:click="addAddonItemType('{{ $type }}')">
-                                                    <x-icons.plus class="w-6 h-6" />
+                                                <button @class(['invisible' => ! $loop->last]) wire:click="addAddonItemType('{{ $type }}')">
+                                                    <x-icons.plus class="w-5 h-5" />
                                                 </button>
                                             </div>
                                         </div>
                                         @endforeach
                                     </div>
                                 </li>
-                                @endforeach
-                                @endif
+                                @empty
+                                @endforelse
+                            </ul>
+                        </div>
+                        <div class="border rounded-lg p-3">
+                            <p class="font-semibold">Customize:</p>
+                            <ul>
+                                <li>
+                                    <label for="add-custom-flower" class="space-x-2">
+                                        <input type="checkbox" id="add-custom-flower" wire:model.live="flowers.customize">
+                                        <span>Flower</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label for="add-custom-chair" class="space-x-2">
+                                        <input type="checkbox" id="add-custom-chair" wire:model.live="chairs.customize">
+                                        <span>Chair</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label for="add-custom-table" class="space-x-2">
+                                        <input type="checkbox" id="add-custom-table" wire:model.live="tables.customize">
+                                        <span>Table</span>
+                                    </label>
+                                </li>
+                            </ul>
+                            <ul>
+                                @forelse ($customize as $type => $custom)
+                                <li class="space-y-1">
+                                    <div class="border-t my-2"></div>
+                                    <span class="font-semibold capitalize">{{ $type }}</span>
+                                    <div class="space-y-1">
+                                        @foreach ($custom as $key => $value)
+                                        <div class="flex items-center gap-3">
+                                            <input type="text" class="w-full border border-gray-300 rounded-lg px-3 py-0.5" placeholder="Name" wire:model="customize.{{ $type }}.{{ $key }}.name">
+                                            <input type="number" class="w-full border border-gray-300 rounded-lg px-3 py-0.5" placeholder="Price" wire:model="customize.{{ $type }}.{{ $key }}.price">
+                                            <div class="flex items-center gap-3">
+                                                <button  wire:click="removeCustomizeItemType('{{ $type }}', {{ $key }})">
+                                                    <x-icons.trash class="w-5 h-5" />
+                                                </button>
+                                                <button @class(['invisible' => ! $loop->last]) wire:click="addCustomizeItemType('{{ $type }}')">
+                                                    <x-icons.plus class="w-5 h-5" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </li>
+                                @empty
+                                @endforelse
                             </ul>
                         </div>
                     </div>
