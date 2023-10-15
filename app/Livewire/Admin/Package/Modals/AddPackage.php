@@ -75,8 +75,7 @@ class AddPackage extends Component
             'no_of_pax' => $this->no_of_pax,
             'inclusions' => $this->inclusions,
             'addons' => (object) $this->addons,
-            'customize' => (object) $this->customize,
-            'status' => true
+            'customize' => (object) $this->customize
         ]);
 
         return redirect()->route('packages');

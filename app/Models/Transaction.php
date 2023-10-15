@@ -5,18 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Package extends Model
+class Transaction extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
-    
+
     protected $casts = [
         'addons' => 'object',
         'customize' => 'object',
     ];
-
-    public function service() {
-        return $this->belongsTo(Service::class);
-    }
 }

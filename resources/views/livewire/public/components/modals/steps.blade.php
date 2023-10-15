@@ -323,7 +323,7 @@
                                     <button class="bg-black rounded-md px-3 py-1" x-on:click="step = 'dp'">
                                         <span class="text-white">Back</span>
                                     </button>
-                                    <button class="bg-black rounded-md px-3 py-1" wire:click="test">
+                                    <button class="bg-black rounded-md px-3 py-1" wire:click="submit">
                                         <span class="text-white">Confirm</span>
                                     </button>
                                 </div>

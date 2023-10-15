@@ -13,8 +13,7 @@ class AddService extends Component
 
     public function save() {
         Service::create([
-            'name' => $this->name,
-            'status' => true
+            'name' => $this->name
         ]);
 
         return redirect()->route('services');
