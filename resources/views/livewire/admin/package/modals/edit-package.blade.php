@@ -33,6 +33,11 @@
                         </div>
 
                         <div class="flex items-center border rounded-lg overflow-hidden">
+                            <label class="w-2/5 border-r ml-3">Price:</label>
+                            <input type="number" class="flex-1 border-none" wire:model="price">
+                        </div>
+
+                        <div class="flex items-center border rounded-lg overflow-hidden">
                             <label class="w-2/5 border-r ml-3">No. of Pax:</label>
                             <input type="number" class="flex-1 border-none" wire:model="no_of_pax">
                         </div>

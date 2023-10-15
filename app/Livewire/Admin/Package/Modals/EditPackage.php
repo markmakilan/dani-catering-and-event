@@ -12,6 +12,7 @@ class EditPackage extends Component
     public $modal;
 
     public $name;
+    public $price;
     public $service_id;
     public $no_of_pax;
     public $inclusions;
@@ -35,6 +36,7 @@ class EditPackage extends Component
     {
         $this->package->update([
             'name' => $this->name,
+            'price' => $this->price,
             'service_id' => $this->service_id,
             'no_of_pax' => $this->no_of_pax,
             'inclusions' => $this->inclusions,
@@ -51,6 +53,7 @@ class EditPackage extends Component
     {
         $this->package = $package;
         $this->name = $package->name;
+        $this->price = $package->price;
         $this->service_id = $package->service_id;
         $this->no_of_pax = $package->no_of_pax;
         $this->inclusions = $package->inclusions;
@@ -63,7 +66,7 @@ class EditPackage extends Component
             'addons' => data_get($package->addons, 'flowers') ? true : false,
             'customize' => data_get($package->customize, 'flowers') ? true : false,
         ];
-        
+
         $this->chairs = [
             'addons' => data_get($package->addons, 'chairs') ? true : false,
             'customize' => data_get($package->customize, 'chairs') ? true : false,

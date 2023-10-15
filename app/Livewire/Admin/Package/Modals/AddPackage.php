@@ -13,6 +13,7 @@ class AddPackage extends Component
     public $modal;
     
     public $name;
+    public $price;
     public $service_id;
     public $no_of_pax;
     public $inclusions;
@@ -69,6 +70,7 @@ class AddPackage extends Component
     {   
         Package::create([
             'name' => $this->name,
+            'price' => $this->price,
             'service_id' => $this->service_id,
             'no_of_pax' => $this->no_of_pax,
             'inclusions' => $this->inclusions,
