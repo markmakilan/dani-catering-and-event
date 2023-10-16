@@ -6,10 +6,14 @@
         <div class="col-span-6 flex items-end bg-white rounded-lg p-5">
             <div class="w-full space-y-5">
                 <div class="flex items-center justify-center gap-5">
-                    <img class="h-40 w-auto" src="{{ asset('assets/img/logo.png') }}" alt="Your Company">
+                    @if (auth()->user()->getFirstMediaUrl('users'))
+                        <img class="h-auto w-2/5" src="{{ asset(auth()->user()->getFirstMediaUrl('users')) }}">
+                    @else
+                        <img class="h-auto w-2/5" src="{{ asset('assets/img/logo.png') }}" alt="Your Company">
+                    @endif
                     <div>
-                        <h3 for="admin">Administrator:</h3>
-                        <label for="name">Juan Dela Cruz</label>
+                        <h3 for="admin" class="capitalize">{{ auth()->user()->role }}:</h3>
+                        <label for="name">{{ auth()->user()->name }}</label>
                     </div>
                 </div>
                 <div class="space-y-1">
@@ -50,14 +54,14 @@
                     </div>
                 </button>
                 <button class="w-full border rounded-lg px-3 py-1.5"
-                    x-on:click="toggleEditPackageModal">
+                    x-on:click="redirect('/admin/packages')">
                     <div class="flex items-center gap-3">
                         <x-icons.edit class="w-6 h-6" />
                         <span>Edit Package</span>
                     </div>
                 </button>
                 <button class="w-full border rounded-lg px-3 py-1.5"
-                    x-on:click="toggleDeletePackageModal">
+                    x-on:click="redirect('/admin/packages')">
                     <div class="flex items-center gap-3">
                         <x-icons.trash class="w-6 h-6" />
                         <span>Delete Package</span>
@@ -87,8 +91,6 @@
     @livewire('admin.dashboard.modals.edit-profile', ['modal' => 'edit_profile_modal'])
     @livewire('admin.dashboard.modals.view-packages', ['modal' => 'view_packages_modal'])
     @livewire('admin.package.modals.add-package', ['modal' => 'add_package_modal'])
-    @livewire('admin.dashboard.modals.edit-package', ['modal' => 'edit_package_modal'])
-    @livewire('admin.dashboard.modals.delete-package', ['modal' => 'delete_package_modal'])
 
     <script>
         document.addEventListener('alpine:init', () => {
@@ -96,9 +98,7 @@
                 edit_profile_modal: false,
                 view_packages_modal: false,
                 add_package_modal: false,
-                edit_package_modal: false,
-                delete_package_modal: false,
-     
+
                 toggleEditProfileModal() {
                     this.edit_profile_modal = ! this.edit_profile_modal
                 },
@@ -111,12 +111,8 @@
                     this.add_package_modal = ! this.add_package_modal
                 },
 
-                toggleEditPackageModal() {
-                    this.edit_package_modal = ! this.edit_package_modal
-                },
-
-                toggleDeletePackageModal() {
-                    this.delete_package_modal = ! this.delete_package_modal
+                redirect(url) {
+                    window.location.href = url
                 },
             }))
         })

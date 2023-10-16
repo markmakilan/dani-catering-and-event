@@ -1,17 +1,14 @@
 <?php
 
-namespace App\Livewire\Admin\Dashboard\Modals;
+namespace App\Livewire\Public\Components\Tabs;
 
 use Livewire\{Component, WithFileUploads};
 use Livewire\Attributes\Rule;
 
 use Illuminate\Support\Facades\Hash;
-
-class EditProfile extends Component
+class Profile extends Component
 {
     use WithFileUploads;
-
-    public $modal;
 
     public $file;
     #[Rule('required|max:50')]
@@ -40,18 +37,18 @@ class EditProfile extends Component
                 auth()->user()->update([
                     'password' => Hash::make($this->password)
                 ]);
-                
+
                 auth()->logout();
 
                 return redirect()->route('home');
             }
 
-            return redirect()->route('dashboard');
+            return redirect()->route('account', ['tab' => 'profile']);
         }
     }
-    
+
     public function render()
     {
-        return view('livewire.admin.dashboard.modals.edit-profile');
+        return view('livewire.public.components.tabs.profile');
     }
 }

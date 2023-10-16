@@ -34,6 +34,9 @@
                     </ul>
                 </nav>
                 <div class="flex-1 bg-white rounded-2xl px-5 py-3">
+                    <div x-show="tab == 'profile'" style="display: none;">
+                        @livewire('public.components.tabs.profile')
+                    </div>
                     <div x-show="tab == 'transactions'" style="display: none;">
                         @livewire('public.components.tabs.transaction')
                     </div>
