@@ -53,12 +53,12 @@ class Steps extends Component
                 ]);
     
                 $this->js('alert("Your reservation has been submitted.")');
+
+                return redirect()->route('account', ['tab' => 'transactions']);
             });
         } catch (\Throwable $th) {
             $this->js('alert("We\'re unable to process your reservation at this time.")');
         }
-
-        $this->js('location.reload()');
     }
 
     public function increment($type, $keys) {

@@ -23,6 +23,8 @@ Route::get('services', App\Livewire\Public\Services::class)->name('services');
 Route::get('services/{service_id}/packages', App\Livewire\Public\Packages::class)->name('packages');
 Route::get('portfolio', App\Livewire\Public\Portfolio::class)->name('portfolio');
 
+Route::get('account/{tab}', App\Livewire\Public\Account::class)->middleware('auth')->name('account');
+
 Route::get('login', App\Livewire\Public\Login::class)->name('login');
 Route::post('logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
 Route::get('register', App\Livewire\Public\Register::class)->name('register');

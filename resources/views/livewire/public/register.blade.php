@@ -6,7 +6,7 @@
                     <img class="absolute top-3 left-3 h-20 w-auto" src="{{ asset('assets/img/logo.png') }}">
                 </a>
                 <div class="flex justify-center py-3 mb-14">
-                    <a wire:navigate href="/register">
+                    <a href="/register">
                         <span class="font-bold text-2xl text-white">Signup</span>
                     </a>
                 </div>
@@ -34,7 +34,7 @@
                 </div>
     
                 <div class="absolute -bottom-16 left-0 right-0 bg-white rounded-t-full py-20 text-center">
-                    <a wire:navigate href="/login">
+                    <a href="/login">
                         <span class="font-bold text-2xl">Login</span>
                     </a>
                 </div>

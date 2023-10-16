@@ -12,7 +12,7 @@
                     <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
 
                     <h3 class="mt-3 text-lg text-center font-semibold leading-6 text-white">
-                        <a wire:navigate href="/services/{{ $service->id }}/packages">
+                        <a href="/services/{{ $service->id }}/packages">
                             <span class="absolute inset-0"></span>
                             {{ $service->name }}
                         </a>

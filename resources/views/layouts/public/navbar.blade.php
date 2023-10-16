@@ -18,21 +18,21 @@
                         ])>
                         <span>Home</span>
                     </a>
-                    <a wire:navigate href="/about-us"
+                    <a href="/about-us"
                         @class([
                             'rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white', 
                             'bg-yellow-300 text-white' => request()->routeIs('about-us')
                         ])>
                         <span>About Us</span>
                     </a>
-                    <a wire:navigate href="/services"
+                    <a href="/services"
                         @class([
                             'rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white', 
                             'bg-yellow-300 text-white' => request()->routeIs('services')
                         ])>
                         <span>Services</span>
                     </a>
-                    <a wire:navigate href="/portfolio"
+                    <a href="/portfolio"
                         @class([
                             'rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white', 
                             'bg-yellow-300 text-white' => request()->routeIs('portfolio')
@@ -61,7 +61,7 @@
                             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"
                             style="display: none;" x-show="open">
                             <!-- Active: "bg-gray-100", Not Active: "" -->
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                            <a href="/account/profile" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                                 id="user-menu-item-0">Your Profile</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -74,7 +74,7 @@
                     </div>
                     @else
                     <div class="flex items-center gap-2">
-                        <a wire:navigate href="/login"
+                        <a href="/login"
                             class="rounded-md px-3 py-2 text-sm font-medium bg-gray-800 text-white hover:bg-gray-700 hover:text-white">
                             <span>Login</span>
                         </a>
