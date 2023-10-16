@@ -1,5 +1,5 @@
 <div>
-    <x-modals.center modal="{{ $modal }}" width="sm:max-w-xl">
+    <x-modals.center modal="{{ $modal }}" width="sm:max-w-xl" style="display: none;">
         <x-slot name="content">
             <div class="space-y-3">
                 <div class="flex items-center gap-3">
