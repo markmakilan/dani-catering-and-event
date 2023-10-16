@@ -8,9 +8,6 @@ use App\Models\Service;
 
 class Index extends Component
 {
-    #[Reactive] 
-    public $service = [];
-
     public $edit_service_modal = false;
 
     public $services = [];
@@ -19,9 +16,10 @@ class Index extends Component
         $this->services = $this->services();
     }
 
-    public function toggleEditServiceModal(Service $service) {
+    public function toggleEditServiceModal($id) {
         $this->edit_service_modal = !$this->edit_service_modal;
-        $this->service = $service;
+        
+        $this->dispatch('selected-service', service: $id);
     }
     
     public function services() {

@@ -2,21 +2,33 @@
 
 namespace App\Livewire\Admin\Service\Modals;
 
-use Livewire\Component;
+use Livewire\{Component, WithFileUploads};
+use Livewire\Attributes\Rule;
 
 use App\Models\Service;
 
 class AddService extends Component
 {
+    use WithFileUploads;
+
     public $modal;
+
+    #[Rule('required|unique:services,name|max:50')]
     public $name;
 
-    public function save() {
-        Service::create([
-            'name' => $this->name
-        ]);
+    #[Rule('required|file|mimes:jpg,jpeg,png|max:1024')]
+    public $file;
 
-        return redirect()->route('services');
+    public function save() {
+        if ($this->validate()) {
+            $service = Service::create([
+                'name' => $this->name
+            ]);
+    
+            $service->addMedia($this->file)->toMediaCollection('services');
+    
+            return redirect()->route('services');
+        }
     }
 
     public function render()

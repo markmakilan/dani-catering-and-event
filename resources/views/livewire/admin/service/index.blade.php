@@ -26,7 +26,7 @@
                 <tr>
                     <td
                         class="w-full max-w-0 py-2 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none">
-                        <img src="{{ asset('assets/img/catering.png') }}" class="w-auto h-14">
+                        <img src="{{ asset($service->getFirstMedia('services')->getUrl()) }}" class="w-auto h-14">
                     </td>
                     <td class="px-3 py-2 text-sm text-gray-500">{{ $service->name }}</td>
                     <td class="px-3 py-2 text-sm text-gray-500">{{ $service->status ? 'Active' : 'Inactive' }}</td>
@@ -42,7 +42,7 @@
     </div>
 
     @livewire('admin.service.modals.add-service', ['modal' => 'add_service_modal'])
-    @livewire('admin.service.modals.edit-service', ['modal' => 'edit_service_modal', 'service' => $service])
+    @livewire('admin.service.modals.edit-service', ['modal' => 'edit_service_modal'])
 
     <script>
         document.addEventListener('alpine:init', () => {
