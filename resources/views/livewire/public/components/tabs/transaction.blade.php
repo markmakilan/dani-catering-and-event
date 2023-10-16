@@ -1,7 +1,7 @@
 <div x-data="{ open: '', toggle(open) { this.open=open} }">
     @forelse ($transactions as $key => $transaction)
     <div>
-        <div class="bg-white rounded-lg p-3 space-y-3">
+        <div class="bg-white border rounded-lg p-3 space-y-3">
             <div class="flex items-center justify-between cursor-pointer" x-on:click="toggle('{{ md5($key) }}')">
                 <div class="flex items-center gap-3">
                     <h3 class="font-semibold">{{ $transaction->transactionNumber() }}</h3>
