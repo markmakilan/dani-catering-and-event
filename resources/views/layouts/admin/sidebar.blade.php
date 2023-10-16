@@ -23,15 +23,15 @@
                             @endif
                         </li>
                         <li @class(['relative flex rounded-l-full text-gray-400 items-center justify-between'
-                            , 'bg-yellow-300 text-black'=> request()->routeIs('transaction-records')
+                            , 'bg-yellow-300 text-black'=> request()->routeIs('transactions') || request()->routeIs('transactions.manage')
                             ])>
-                            <a href="/admin/transaction-records"
+                            <a href="/admin/transactions"
                                 class="group flex items-center gap-x-3 p-2 text-sm leading-6 font-semibold">
                                 <x-icons.museum class="w-6 h-6"
-                                    fill="{{ request()->routeIs('transaction-records') ? '#000' : '#9ba3ae' }}" />
+                                    fill="{{ request()->routeIs('transactions') || request()->routeIs('transactions.manage') ? '#000' : '#9ba3ae' }}" />
                                 Transaction Records
                             </a>
-                            @if (request()->routeIs('transaction-records'))
+                            @if (request()->routeIs('transactions') || request()->routeIs('transactions.manage'))
                             <span class="absolute right-0 rounded-l-full bg-yellow-300 w-5 h-16"></span>
                             @endif
                         </li>

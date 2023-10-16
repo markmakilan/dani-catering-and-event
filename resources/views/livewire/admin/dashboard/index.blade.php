@@ -86,7 +86,7 @@
 
     @livewire('admin.dashboard.modals.edit-profile', ['modal' => 'edit_profile_modal'])
     @livewire('admin.dashboard.modals.view-packages', ['modal' => 'view_packages_modal'])
-    @livewire('admin.dashboard.modals.add-package', ['modal' => 'add_package_modal'])
+    @livewire('admin.package.modals.add-package', ['modal' => 'add_package_modal'])
     @livewire('admin.dashboard.modals.edit-package', ['modal' => 'edit_package_modal'])
     @livewire('admin.dashboard.modals.delete-package', ['modal' => 'delete_package_modal'])
 

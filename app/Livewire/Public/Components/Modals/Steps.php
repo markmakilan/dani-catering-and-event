@@ -5,7 +5,7 @@ namespace App\Livewire\Public\Components\Modals;
 use Livewire\Component;
 use Livewire\Attributes\On; 
 
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\{DB, Auth};
 
 use App\Models\{Package, Transaction, Reservation, Payment};
 
@@ -24,13 +24,14 @@ class Steps extends Component
         try {
             DB::transaction(function () {
                 $transaction = Transaction::create([
+                    'user_id' => Auth::user()->id,
                     'package_id' => $this->package->id,
                     'package_amount' => $this->package->price,
                     'addons_total_amount'=> collect(data_get($this->addons, '*.*'))->sum('amount'),
                     'customize_total_amount' => collect(data_get($this->customize, '*.*'))->sum('amount'),
                     'addons' => (object) $this->addons,
                     'customize' => (object) $this->customize,
-                    'remarks' => null
+                    'remarks' => 'pending'
                 ]);
     
                 Reservation::create([
