@@ -11,10 +11,14 @@
 
                 <div class="grid grid-cols-2 gap-3">
                     <div class="border rounded-md p-3 space-y-3">
-                        <label for="profile" class="flex items-center gap-3 p-3 border rounded-lg overflow-hidden cursor-pointer">
-                            <img class="h-auto w-2/5" src="{{ asset('assets/img/logo.png') }}" alt="Your Company">
-                            <input id="profile" type="file" class="flex-1">
-                        </label>
+                        <div class="flex items-center border rounded-lg overflow-hidden py-1">
+                            <label class="w-2/5 border-r ml-3">Photo:</label>
+                            <input id="profile" type="file" class="flex-1" wire:model="file">
+                        </div>
+
+                        @error('file')
+                        <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
+                        @enderror
         
                         <div class="flex items-center border rounded-lg overflow-hidden">
                             <label class="w-2/5 border-r ml-3">Category:</label>
@@ -27,21 +31,37 @@
                                 @endforelse
                             </select>
                         </div>
+
+                        @error('service_id')
+                        <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
+                        @enderror
             
                         <div class="flex items-center border rounded-lg overflow-hidden">
                             <label class="w-2/5 border-r ml-3">Package Name:</label>
                             <input type="text" class="flex-1 border-none" wire:model="name">
                         </div>
 
+                        @error('name')
+                        <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
+                        @enderror
+
                         <div class="flex items-center border rounded-lg overflow-hidden">
                             <label class="w-2/5 border-r ml-3">Price:</label>
                             <input type="number" class="flex-1 border-none" wire:model="price">
                         </div>
+
+                        @error('price')
+                        <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
+                        @enderror
         
                         <div class="flex items-center border rounded-lg overflow-hidden">
                             <label class="w-2/5 border-r ml-3">No. of Pax:</label>
                             <input type="number" class="flex-1 border-none" wire:model="no_of_pax">
                         </div>
+
+                        @error('no_of_pax')
+                        <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
+                        @enderror
         
                         <div class="border rounded-lg px-3">
                             <p class="my-1.5">Package Inclusions:</p>

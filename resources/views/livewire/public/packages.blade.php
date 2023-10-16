@@ -14,7 +14,7 @@
                         </div>
                         <div
                             class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 h-52">
-                            <img src="{{ asset('assets/img/package-1.png') }}"
+                            <img src="{{ asset($value->getFirstMedia('packages')->getUrl()) }}"
                                 class="absolute inset-0 -z-10 h-auto w-full">
                         </div>
                         <div x-data="{ open: false, toggle() { this.open =! this.open } }">

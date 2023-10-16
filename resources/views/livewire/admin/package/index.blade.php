@@ -28,7 +28,7 @@
                 <tr>
                     <td
                         class="w-full max-w-0 py-2 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none">
-                        <img src="{{ asset('assets/img/package-1.png') }}" class="w-auto h-14">
+                        <img src="{{ asset($package->getFirstMedia('packages')->getUrl()) }}" class="w-auto h-14">
                     </td>
                     <td class="px-3 py-2 text-sm text-gray-500">{{ $package->name }}</td>
                     <td class="px-3 py-2 text-sm text-gray-500">{{ $package->service->name }}</td>

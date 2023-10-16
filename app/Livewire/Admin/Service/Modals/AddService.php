@@ -16,7 +16,7 @@ class AddService extends Component
     #[Rule('required|unique:services,name|max:50')]
     public $name;
 
-    #[Rule('required|file|mimes:jpg,jpeg,png|max:1024')]
+    #[Rule('required|file|mimes:jpg,jpeg,png|max:5120')]
     public $file;
 
     public function save() {

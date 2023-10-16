@@ -2,18 +2,25 @@
 
 namespace App\Livewire\Admin\Package\Modals;
 
-use Livewire\Component;
-use Livewire\Attributes\On; 
+use Livewire\{Component, WithFileUploads};
+use Livewire\Attributes\{On, Rule}; 
 
 use App\Models\{Package, Service};
 
 class EditPackage extends Component
 {
+    use WithFileUploads;
+
     public $modal;
 
+    public $file;
+    #[Rule('required|max:50')]
     public $name;
+    #[Rule('required|numeric|gt:0')]
     public $price;
+    #[Rule('required|exists:services,id')]
     public $service_id;
+    #[Rule('required|numeric|gt:0')]
     public $no_of_pax;
     public $inclusions;
     public $status;
@@ -34,18 +41,24 @@ class EditPackage extends Component
 
     public function update() 
     {
-        $this->package->update([
-            'name' => $this->name,
-            'price' => $this->price,
-            'service_id' => $this->service_id,
-            'no_of_pax' => $this->no_of_pax,
-            'inclusions' => $this->inclusions,
-            'addons' => (object) $this->addons,
-            'customize' => (object) $this->customize,
-            'status' => $this->status
-        ]);
+        if ($this->validate()) {
+            $this->package->update([
+                'name' => $this->name,
+                'price' => $this->price,
+                'service_id' => $this->service_id,
+                'no_of_pax' => $this->no_of_pax,
+                'inclusions' => $this->inclusions,
+                'addons' => (object) $this->addons,
+                'customize' => (object) $this->customize,
+                'status' => $this->status
+            ]);
 
-        return redirect()->route('packages');
+            if ($this->file && $this->validate(['file' => 'file|mimes:jpg,jpeg,png|max:5120'])) {
+                $this->package->addMedia($this->file)->toMediaCollection('packages');
+            }
+    
+            return redirect()->route('packages');
+        }
     }
 
     #[On('selected-package')]
@@ -60,7 +73,6 @@ class EditPackage extends Component
         $this->addons = json_decode(json_encode($package->addons), true) ?? [];
         $this->customize = json_decode(json_encode($package->customize), true) ?? [];
         $this->status = $package->status;
-
         
         $this->flowers = [
             'addons' => data_get($package->addons, 'flowers') ? true : false,

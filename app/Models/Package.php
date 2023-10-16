@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Package extends Model
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+
+class Package extends Model implements HasMedia
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, InteractsWithMedia;
 
     protected $guarded = [];
 
@@ -18,6 +21,11 @@ class Package extends Model
         'addons' => 'object',
         'customize' => 'object',
     ];
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('packages')->singleFile();
+    }
 
     public function service() {
         return $this->belongsTo(Service::class);

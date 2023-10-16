@@ -2,7 +2,8 @@
 
 namespace App\Livewire\Admin\Package\Modals;
 
-use Livewire\Component;
+use Livewire\{Component, WithFileUploads};
+use Livewire\Attributes\Rule;
 
 use Illuminate\Support\Str;
 
@@ -10,11 +11,19 @@ use App\Models\{Package, Service};
 
 class AddPackage extends Component
 {
+    use WithFileUploads;
+
     public $modal;
     
+    #[Rule('required|file|mimes:jpg,jpeg,png|max:5120')]
+    public $file;
+    #[Rule('required|unique:packages,name|max:50')]
     public $name;
+    #[Rule('required|numeric|gt:0')]
     public $price;
+    #[Rule('required|exists:services,id')]
     public $service_id;
+    #[Rule('required|numeric|gt:0')]
     public $no_of_pax;
     public $inclusions;
 
@@ -68,17 +77,21 @@ class AddPackage extends Component
 
     public function save() 
     {   
-        Package::create([
-            'name' => $this->name,
-            'price' => $this->price,
-            'service_id' => $this->service_id,
-            'no_of_pax' => $this->no_of_pax,
-            'inclusions' => $this->inclusions,
-            'addons' => (object) $this->addons,
-            'customize' => (object) $this->customize
-        ]);
+        if ($this->validate()) {
+            $package = Package::create([
+                'name' => $this->name,
+                'price' => $this->price,
+                'service_id' => $this->service_id,
+                'no_of_pax' => $this->no_of_pax,
+                'inclusions' => $this->inclusions,
+                'addons' => (object) $this->addons,
+                'customize' => (object) $this->customize
+            ]);
 
-        return redirect()->route('packages');
+            $package->addMedia($this->file)->toMediaCollection('packages');
+    
+            return redirect()->route('packages');
+        }
     }
 
     public function addAddonItemType($type) 
