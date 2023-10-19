@@ -61,6 +61,19 @@
                             <span class="absolute right-0 rounded-l-full bg-yellow-300 w-5 h-16"></span>
                             @endif
                         </li>
+                        <li @class([ 'relative flex rounded-l-full text-gray-400 items-center justify-between'
+                            , 'bg-yellow-300 text-black'=> request()->routeIs('gallery')
+                            ])>
+                            <a href="/admin/gallery"
+                                class="group flex items-center gap-x-3 p-2 text-sm leading-6 font-semibold">
+                                <x-icons.gallery-heart class="w-6 h-6"
+                                    stroke="{{ request()->routeIs('gallery') ? '#000' : '#9ba3ae' }}" />
+                                Gallery
+                            </a>
+                            @if (request()->routeIs('gallery'))
+                            <span class="absolute right-0 rounded-l-full bg-yellow-300 w-5 h-16"></span>
+                            @endif
+                        </li>
                     </ul>
                 </li>
 

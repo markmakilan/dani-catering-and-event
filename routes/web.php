@@ -35,4 +35,5 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('transactions/manage/{transaction}', App\Livewire\Admin\Transaction\Manage::class)->name('transactions.manage');
     Route::get('services', App\Livewire\Admin\Service\Index::class)->name('services');
     Route::get('packages', App\Livewire\Admin\Package\Index::class)->name('packages');
+    Route::get('gallery', App\Livewire\Admin\Gallery\Index::class)->name('gallery');
 });
