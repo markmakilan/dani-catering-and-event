@@ -15,8 +15,9 @@ class Steps extends Component
 
     public $modal_id;
 
-    #[Rule('required|file|mimes:jpg,jpeg,png|max:5120')]
     public $file;
+    
+    public $steps = 'confirmation';
 
     public $package = [];
     public $addons = [];
@@ -28,6 +29,37 @@ class Steps extends Component
     public function  mount() 
     {
         $this->banks = $this->banks()->get();    
+    }
+
+    public function proceed($value) 
+    {
+        switch ($value) {
+            case 'dp':
+                $this->validate([
+                    'reservation.name' => 'required',
+                    'reservation.contact' => 'required',
+                    'reservation.date_of_use' => 'required|date',
+                    'reservation.location' => 'required',
+                    'reservation.email' => 'required|email',
+                ]);
+                break;
+
+            case 'confirm':
+                $this->validate([
+                    'payment.name' => 'required',
+                    'payment.amount' => 'required|numeric|gt:0',
+                    'payment.ref_no' => 'required',
+                    'payment.email' => 'required|email',
+                    'file' => 'required|file|mimes:jpg,jpeg,png|max:5120'
+                ]);
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+
+        $this->dispatch('proceed-step', step: $value);   
     }
 
     public function submit() 

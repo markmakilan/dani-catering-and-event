@@ -200,22 +200,46 @@
                                     <span class="w-1/5 ml-3">Name:</span>
                                     <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none" wire:model.live="reservation.name">
                                 </div>
+
+                                @error('reservation.name')
+                                <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
+                                @enderror
+
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Contact Info:</span>
                                     <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none" wire:model.live="reservation.contact">
                                 </div>
+
+                                @error('reservation.contact')
+                                <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
+                                @enderror
+
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Date of Use:</span>
                                     <input type="date" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none" wire:model.live="reservation.date_of_use">
                                 </div>
+
+                                @error('reservation.date_of_use')
+                                <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
+                                @enderror
+
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Location (Venue):</span>
                                     <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none" wire:model.live="reservation.location">
                                 </div>
+
+                                @error('reservation.location')
+                                <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
+                                @enderror
+
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Email:</span>
                                     <input type="email" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none" wire:model="reservation.email">
                                 </div>
+
+                                @error('reservation.email')
+                                <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                         <div class="bg-gray-50 px-4 py-3 sm:px-6">
@@ -227,7 +251,7 @@
                                     <button class="bg-black rounded-md px-3 py-1" x-on:click="step = 'summary'">
                                         <span class="text-white">Back</span>
                                     </button>
-                                    <button class="bg-black rounded-md px-3 py-1" x-on:click="step = 'dp'">
+                                    <button class="bg-black rounded-md px-3 py-1" wire:click="proceed('dp')">
                                         <span class="text-white">Confirm</span>
                                     </button>
                                 </div>
@@ -254,22 +278,46 @@
                                     <span class="w-1/5 ml-3">Name:</span>
                                     <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none" wire:model="payment.name">
                                 </div>
+
+                                @error('payment.name')
+                                <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
+                                @enderror
+
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Amount:</span>
                                     <input type="number" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none" wire:model.live="payment.amount">
                                 </div>
+
+                                @error('payment.amount')
+                                <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
+                                @enderror
+                                
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Reference No.:</span>
                                     <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none" wire:model="payment.ref_no">
                                 </div>
+
+                                @error('payment.ref_no')
+                                <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
+                                @enderror
+
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Receipt:</span>
                                     <input id="file" type="file" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none" wire:model="file">
                                 </div>
+
+                                @error('file')
+                                <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
+                                @enderror
+
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Email:</span>
                                     <input type="email" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none" wire:model="payment.email">
                                 </div>
+
+                                @error('payment.email')
+                                <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                         <div class="bg-gray-50 px-4 py-3 sm:px-6">
@@ -281,7 +329,7 @@
                                     <button class="bg-black rounded-md px-3 py-1" x-on:click="step = 'reservation'">
                                         <span class="text-white">Back</span>
                                     </button>
-                                    <button class="bg-black rounded-md px-3 py-1" x-on:click="step = 'confirm'">
+                                    <button class="bg-black rounded-md px-3 py-1" wire:click="proceed('confirm')">
                                         <span class="text-white">Confirm</span>
                                     </button>
                                 </div>

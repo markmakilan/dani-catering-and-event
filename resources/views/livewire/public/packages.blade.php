@@ -53,7 +53,7 @@
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.data('data', () => ({
-                step: 'select',
+                step: @entangle('step'),
                 steps_modal: false,
      
                 toggleNext(step) {

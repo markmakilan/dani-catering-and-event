@@ -3,12 +3,15 @@
 namespace App\Livewire\Public;
 
 use Livewire\Component;
+use Livewire\Attributes\On; 
 
 use App\Models\Package;
 
 class Packages extends Component
 {
     public $id;
+
+    public $step = 'select';
 
     public $packages = [];
 
@@ -20,6 +23,12 @@ class Packages extends Component
     public function updatedId($value)
     {
         $this->dispatch('selected-package', package: $value);
+    }
+
+    #[On('proceed-step')]
+    public function steps($step)
+    {
+        $this->step = $step;
     }
 
     public function packages($service_id) {
