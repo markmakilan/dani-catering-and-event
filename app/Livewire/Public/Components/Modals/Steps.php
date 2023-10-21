@@ -7,7 +7,7 @@ use Livewire\Attributes\On;
 
 use Illuminate\Support\Facades\{DB, Auth};
 
-use App\Models\{Package, Transaction, Reservation, Payment};
+use App\Models\{Package, Transaction, Reservation, Payment, Bank};
 
 class Steps extends Component
 {
@@ -23,6 +23,12 @@ class Steps extends Component
     public $customize = [];
     public $reservation = [];
     public $payment = [];
+    public $banks = [];
+
+    public function  mount() 
+    {
+        $this->banks = $this->banks();    
+    }
 
     public function submit() 
     {
@@ -114,6 +120,10 @@ class Steps extends Component
                 ];
             }
         }
+    }
+
+    public function banks() {
+        return Bank::where('status', true);
     }
     
     public function render()

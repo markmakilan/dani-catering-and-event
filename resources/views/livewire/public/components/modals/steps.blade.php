@@ -240,12 +240,15 @@
                             <div class="space-y-3 border border-black rounded-lg overflow-hidden p-3">
                                 <h3 class="text-xl font-bold text-center mb-10">Down Payment Form</h3>
                                 <p class="text-lg font-semibold">Account of Dani’s</p>
-                                <ul>
+                                <ul class="space-y-3">
+                                    @forelse ($banks as $bank)
                                     <li>
-                                        <p>Wallet: <span class="font-medium">Paymaya</span></p>
-                                        <p>Name: <span class="font-medium">Dani’s Catering and Events</span></p>
-                                        <p>Account No. <span class="font-medium">09xxxxxxxxx</span></p>
+                                        <p>Wallet: <span class="font-medium">{{ $bank->name }}</span></p>
+                                        <p>Name: <span class="font-medium">{{ $bank->account_name }}</span></p>
+                                        <p>Account No. <span class="font-medium">{{ $bank->account_number }}</span></p>
                                     </li>
+                                    @empty
+                                    @endforelse
                                 </ul>
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Name:</span>

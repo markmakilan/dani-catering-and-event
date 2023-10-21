@@ -79,6 +79,19 @@
 
                 <li class="mt-auto">
                     <ul role="list" class="-mx-2 space-y-1">
+                        <li @class([ 'relative flex rounded-l-full text-gray-400 items-center justify-between'
+                            , 'bg-yellow-300 text-black'=> request()->routeIs('banks')
+                            ])>
+                            <a href="/admin/banks"
+                                class="group flex items-center gap-x-3 p-2 text-sm leading-6 font-semibold">
+                                <x-icons.card-transfer class="w-6 h-6"
+                                    stroke="{{ request()->routeIs('banks') ? '#000' : '#9ba3ae' }}" />
+                                Account of Dani’s
+                            </a>
+                            @if (request()->routeIs('banks'))
+                            <span class="absolute right-0 rounded-l-full bg-yellow-300 w-5 h-16"></span>
+                            @endif
+                        </li>
                         <li class="relative flex rounded-l-full text-gray-400 items-center justify-between">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
