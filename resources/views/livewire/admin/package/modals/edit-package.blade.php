@@ -66,7 +66,9 @@
 
                         <div class="border rounded-lg px-3">
                             <p class="my-1.5">Package Inclusions:</p>
-                            <textarea cols="30" rows="5" class="w-full border-none focus:ring-0 p-0" wire:model="inclusions"></textarea>
+                            <div wire:ignore>
+                                <textarea id="edit-inclusions" cols="30" rows="5" class="w-full border-none focus:ring-0 p-0" wire:model="inclusions"></textarea>
+                            </div>
                         </div>
 
                         <div class="flex items-center border rounded-lg overflow-hidden">
@@ -194,4 +196,19 @@
             </div>
         </x-slot>
     </x-modals.center>
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+
+    <script>
+        ClassicEditor
+        .create( document.querySelector( '#edit-inclusions' ) )
+        .then( editor => {
+            editor.model.document.on('change:data', () => {
+                @this.set('inclusions', editor.getData());
+            })
+        })
+        .catch( error => {
+            console.error( error );
+        })
+    </script>
 </div>

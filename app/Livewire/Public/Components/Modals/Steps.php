@@ -27,7 +27,7 @@ class Steps extends Component
 
     public function  mount() 
     {
-        $this->banks = $this->banks();    
+        $this->banks = $this->banks()->get();    
     }
 
     public function submit() 

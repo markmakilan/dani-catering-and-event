@@ -22,7 +22,7 @@
                                 <span class="text-white" x-text="open ? 'Hide details' : 'View details'"></span>
                             </button>
                             <div class="bg-white rounded-md p-3" style="display: none;" x-show="open">
-                                <p>{{ $value->inclusions }}</p>
+                                <p>{!! $value->inclusions !!}</p>
                             </div>
                         </div>
                     </div>

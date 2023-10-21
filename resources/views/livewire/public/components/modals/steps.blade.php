@@ -15,7 +15,7 @@
                                 <div class="p-3">
                                     <h3 class="text-xl font-semibold uppercase">{{ $package['name'] }}</h3>
                                     <div>
-                                        {{ $package['inclusions'] }}
+                                        {!! $package['inclusions'] !!}
                                     </div>
                                 </div>
                             </div>
