@@ -249,13 +249,11 @@
                                 </ul>
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Name:</span>
-                                    <div class="relative">
-                                        <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none" wire:model="payment.name">
-                                    </div>
+                                    <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none" wire:model="payment.name">
                                 </div>
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Amount:</span>
-                                    <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none" wire:model.live="payment.amount">
+                                    <input type="number" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none" wire:model.live="payment.amount">
                                 </div>
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Reference No.:</span>
@@ -263,7 +261,7 @@
                                 </div>
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Receipt:</span>
-                                    <input type="text" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none">
+                                    <input id="file" type="file" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none" wire:model="file">
                                 </div>
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Email:</span>

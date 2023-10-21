@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Public\Components\Modals;
 
-use Livewire\Component;
+use Livewire\{Component, WithFileUploads};
 use Livewire\Attributes\On; 
 
 use Illuminate\Support\Facades\{DB, Auth};
@@ -11,7 +11,12 @@ use App\Models\{Package, Transaction, Reservation, Payment};
 
 class Steps extends Component
 {
+    use WithFileUploads;
+
     public $modal_id;
+
+    #[Rule('required|file|mimes:jpg,jpeg,png|max:5120')]
+    public $file;
 
     public $package = [];
     public $addons = [];
@@ -51,12 +56,16 @@ class Steps extends Component
                     'ref_no' => $this->payment['ref_no'],
                     'email' => $this->payment['email']
                 ]);
+
+                $transaction->addMedia($this->file)->toMediaCollection('transactions');
     
                 $this->js('alert("Your reservation has been submitted.")');
 
                 return redirect()->route('account', ['tab' => 'transactions']);
             });
         } catch (\Throwable $th) {
+            dump($th);
+            
             $this->js('alert("We\'re unable to process your reservation at this time.")');
         }
     }

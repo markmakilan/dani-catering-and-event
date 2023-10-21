@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+
+class Transaction extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory, InteractsWithMedia;
 
     protected $guarded = [];
 
@@ -39,5 +42,10 @@ class Transaction extends Model
     public function payment()
     {
         return $this->hasOne(Payment::class);
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('transactions')->singleFile();
     }
 }

@@ -140,7 +140,7 @@
         </div>
     
         @if (!$loop->last)
-        <div class="border-b"></div>
+        <div class="border-b my-3"></div>
         @endif
     </div>
     @empty

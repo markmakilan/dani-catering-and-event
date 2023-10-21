@@ -1,4 +1,4 @@
-<div>
+<div x-data="transaction">
     <div class="flex items-center justify-between mb-5">
         <h3 class="font-semibold text-xl">Manage Transaction</h3>
         <div class="flex items-center gap-2">
@@ -86,7 +86,11 @@
                 <div class="flex items-center bg-yellow-300 rounded-md">
                     <span class="w-2/5 ml-3">Receipt:</span>
                     <div class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none">
-                        <span class="cursor-pointer">View file</span>    
+                        @if ($transaction->getFirstMedia('transactions'))
+                        <span class="cursor-pointer" x-on:click="toggleViewReceiptModal">View file</span> 
+                        @else
+                        <span>N/A</span> 
+                        @endif
                     </div>
                 </div>
                 <div class="flex items-center bg-yellow-300 rounded-md">
@@ -134,4 +138,20 @@
         </table>
         @endif
     </div>
+
+    @if ($transaction->getFirstMedia('transactions'))
+        @livewire('admin.transaction.modals.receipt', ['modal' => 'receipt_modal', 'transaction' => $transaction])
+    @endif
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('transaction', () => ({
+                receipt_modal: false,
+     
+                toggleViewReceiptModal() {
+                    this.receipt_modal = ! this.receipt_modal
+                },
+            }))
+        })
+    </script>
 </div>

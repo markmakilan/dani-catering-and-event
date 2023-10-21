@@ -30,4 +30,8 @@ class Package extends Model implements HasMedia
     public function service() {
         return $this->belongsTo(Service::class);
     }
+
+    public function transactions() {
+        return $this->hasMany(Transaction::class);
+    }
 }
