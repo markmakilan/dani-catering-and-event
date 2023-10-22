@@ -39,40 +39,44 @@
             </div>
             @else
                 @empty($user)
-                <div class="space-y-3 px-10" wire:key="email">
-                    <input wire:model.live="email" type="email" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Email Address" required>
-                    
-                    @error('email')
-                    <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="space-y-3 px-10 mt-5">
-                    <button 
-                        class="w-full bg-white rounded-lg px-3 py-2 hover:bg-gray-300"
-                        wire:click="sendEmail"
-                        wire:target="sendEmail"
-                        wire:loading.attr="disabled"
-                        wire:loading.class="cursor-wait">
-                        <span class="text-blue-500">Send Code</span>
-                    </button>
+                <div class="mt-10">
+                    <div class="space-y-3 px-10" wire:key="email">
+                        <input wire:model.live="email" type="email" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Email Address" required>
+                        
+                        @error('email')
+                        <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="space-y-3 px-10 mt-5">
+                        <button 
+                            class="w-full bg-white rounded-lg px-3 py-2 hover:bg-gray-300"
+                            wire:click="sendEmail"
+                            wire:target="sendEmail"
+                            wire:loading.attr="disabled"
+                            wire:loading.class="cursor-wait">
+                            <span class="text-blue-500">Send Code</span>
+                        </button>
+                    </div>
                 </div>
                 @else
-                <div class="space-y-3 px-10" wire:key="code">
-                    <input type="text" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Code" required wire:model.live="code">
-                    
-                    @error('code')
-                    <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="space-y-3 px-10 mt-5">
-                    <button 
-                        class="w-full bg-white rounded-lg px-3 py-2 hover:bg-gray-300"
-                        wire:click="verifyCode"
-                        wire:target="verifyCode"
-                        wire:loading.attr="disabled"
-                        wire:loading.class="cursor-wait">
-                        <span class="text-blue-500">Verify</span>
-                    </button>
+                <div class="mt-10">
+                    <div class="space-y-3 px-10" wire:key="code">
+                        <input type="text" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Code" required wire:model.live="code">
+                        
+                        @error('code')
+                        <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="space-y-3 px-10 mt-5">
+                        <button 
+                            class="w-full bg-white rounded-lg px-3 py-2 hover:bg-gray-300"
+                            wire:click="verifyCode"
+                            wire:target="verifyCode"
+                            wire:loading.attr="disabled"
+                            wire:loading.class="cursor-wait">
+                            <span class="text-blue-500">Verify</span>
+                        </button>
+                    </div>
                 </div>
                 @endempty
             @endif
