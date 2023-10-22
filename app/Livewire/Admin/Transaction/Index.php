@@ -15,6 +15,22 @@ class Index extends Component
         $this->transactions = $this->transactions()->get();
     }
 
+    public $search;
+    
+    public function updatedSearch($value) 
+    {
+        $this->transactions = Transaction::where(function ($transactions) use ($value) {
+            $transactions->whereHas('user', function ($user) use ($value) {
+                $user->where('name', 'like', '%' . $value . '%');
+            });
+
+            $transactions->orWhereHas('package', function ($package) use ($value) {
+                $package->where('name', 'like', '%' . $value . '%');
+            });
+        })
+        ->get();
+    }
+
     public function refresh()
     {
         $this->transactions = $this->transactions()->get();

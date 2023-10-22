@@ -17,6 +17,14 @@ class Index extends Component
         $this->packages = $this->packages();
     }
 
+    public $search;
+    
+    public function updatedSearch($value) 
+    {
+        $this->packages = Package::where('name', 'LIKE', '%' . $value . '%')->get();
+    }
+
+
     public function toggleEditPackageModal($id) {
         $this->edit_package_modal = !$this->edit_package_modal;
 

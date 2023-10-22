@@ -11,6 +11,15 @@
     </div>
 
     <div class="bg-white rounded-lg p-3">
+        <div class="flex py-4 relative">
+            <label for="search-field" class="sr-only">Search</label>
+            <x-icons.search class="w-4 h-4 absolute top-6 left-3.5" />
+            <input 
+                id="search-field"
+                class="block bg-white rounded-full h-full w-full border py-1.5 pl-10 pr-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
+                placeholder="Search here"
+                wire:model.live="search">
+        </div>
 
         <table class="min-w-full divide-y divide-gray-300">
             <thead>

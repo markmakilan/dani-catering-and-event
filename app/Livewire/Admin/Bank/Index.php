@@ -16,6 +16,19 @@ class Index extends Component
         $this->banks = $this->banks();
     }
 
+    public $search;
+    
+    public function updatedSearch($value) 
+    {
+        $this->banks = Bank::where(function ($bank) use ($value)
+        {
+            $bank->where('name', 'LIKE', '%' . $value . '%');
+            $bank->orWhere('account_name', 'LIKE', '%' . $value . '%');
+            $bank->orWhere('account_number', 'LIKE', '%' . $value . '%');
+        })
+        ->get();
+    }
+
     public function toggleEditBankModal($id) {
         $this->edit_bank_modal = !$this->edit_bank_modal;
         

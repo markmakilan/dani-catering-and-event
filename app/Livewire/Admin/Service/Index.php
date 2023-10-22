@@ -8,12 +8,21 @@ use App\Models\Service;
 
 class Index extends Component
 {
+    
+
     public $edit_service_modal = false;
 
     public $services = [];
 
     public function mount() {
         $this->services = $this->services();
+    }
+
+    public $search;
+    
+    public function updatedSearch($value) 
+    {
+        $this->services = Service::where('name', 'LIKE', '%' . $value . '%')->get();
     }
 
     public function toggleEditServiceModal($id) {
