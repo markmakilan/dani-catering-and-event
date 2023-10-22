@@ -21,9 +21,15 @@ class Index extends Component
     
     public function updatedSearch($value) 
     {
-        $this->packages = Package::where('name', 'LIKE', '%' . $value . '%')->get();
-    }
+        $this->packages = Package::where(function ($package) use ($value) {
+            $package->where('name', 'LIKE', '%' . $value . '%')->get();
 
+            $package->orWhereHas('service', function ($service) use ($value) {
+                $service->where('name', 'like', '%' . $value . '%');
+            });
+        })
+        ->get();
+    }
 
     public function toggleEditPackageModal($id) {
         $this->edit_package_modal = !$this->edit_package_modal;
