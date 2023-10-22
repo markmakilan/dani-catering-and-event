@@ -102,8 +102,6 @@ class Steps extends Component
                 return redirect()->route('account', ['tab' => 'transactions']);
             });
         } catch (\Throwable $th) {
-            dump($th);
-            
             $this->js('alert("We\'re unable to process your reservation at this time.")');
         }
     }

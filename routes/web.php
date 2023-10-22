@@ -28,6 +28,7 @@ Route::get('account/{tab}', App\Livewire\Public\Account::class)->middleware('aut
 Route::get('login', App\Livewire\Public\Login::class)->name('login');
 Route::post('logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
 Route::get('register', App\Livewire\Public\Register::class)->name('register');
+Route::get('forgot-password', App\Livewire\Public\ForgotPassword::class)->name('forgot-password');
 
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('dashboard', App\Livewire\Admin\Dashboard\Index::class)->name('dashboard');

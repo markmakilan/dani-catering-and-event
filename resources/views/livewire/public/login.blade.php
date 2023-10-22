@@ -29,7 +29,7 @@
                         @enderror
 
                         <div>
-                            <a href="#">
+                            <a href="/forgot-password">
                                 <span class="text-sm text-gray-500 italic">Forgot password?</span>
                             </a>
                         </div>
