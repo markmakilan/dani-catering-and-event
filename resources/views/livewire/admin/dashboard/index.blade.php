@@ -3,39 +3,6 @@
         <div class="col-span-6 bg-white rounded-lg space-y-3 p-5">
             @livewire('admin.dashboard.calendar')
         </div>
-        <div class="col-span-6 flex items-end bg-white rounded-lg p-5">
-            <div class="w-full space-y-5">
-                <div class="flex items-center justify-center gap-5">
-                    @if (auth()->user()->getFirstMediaUrl('users'))
-                        <img class="h-auto w-2/5" src="{{ asset(auth()->user()->getFirstMediaUrl('users')) }}">
-                    @else
-                        <img class="h-auto w-2/5" src="{{ asset('assets/img/logo.png') }}" alt="Your Company">
-                    @endif
-                    <div>
-                        <h3 for="admin" class="capitalize">{{ auth()->user()->role }}:</h3>
-                        <label for="name">{{ auth()->user()->name }}</label>
-                    </div>
-                </div>
-                <div class="space-y-1">
-                    <button 
-                        class="w-full border rounded-lg px-3 py-1.5"
-                        x-on:click="toggleViewProfileModal">
-                        <div class="flex items-center gap-3">
-                            <x-icons.eye class="w-6 h-6" />
-                            <span>View Profile</span>
-                        </div>
-                    </button>
-                    <button 
-                        class="w-full border rounded-lg px-3 py-1.5"
-                        x-on:click="toggleEditProfileModal">
-                        <div class="flex items-center gap-3">
-                            <x-icons.edit class="w-6 h-6" />
-                            <span>Edit Profile</span>
-                        </div>
-                    </button>
-                </div>
-            </div>
-        </div>
         <div class="col-span-6 bg-white rounded-lg space-y-3 p-5">
             <h3 class="font-semibold">Service Offers</h3>
             
@@ -91,8 +58,6 @@
         </div>
     </div>
 
-    @livewire('admin.dashboard.modals.edit-profile', ['modal' => 'edit_profile_modal'])
-    @livewire('admin.dashboard.modals.view-profile', ['modal' => 'view_profile_modal'])
     @livewire('admin.dashboard.modals.view-packages', ['modal' => 'view_packages_modal'])
     @livewire('admin.package.modals.add-package', ['modal' => 'add_package_modal'])
     @livewire('admin.dashboard.modals.most-purchased-package', ['modal' => 'most_purchased_package_modal'])

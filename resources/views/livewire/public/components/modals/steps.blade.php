@@ -216,7 +216,7 @@
 
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Date of Use:</span>
-                                    <input type="date" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none" wire:model.live="reservation.date_of_use">
+                                    <input type="datetime-local" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none" wire:model.live="reservation.date_of_use">
                                 </div>
 
                                 @error('reservation.date_of_use')
@@ -285,7 +285,10 @@
 
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Amount:</span>
-                                    <input type="number" class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none" wire:model.live="payment.amount">
+                                    <div class="flex-1 relative">
+                                        <span class="absolute left-3 top-1">₱</span>
+                                        <input type="number" class="w-full bg-transparent rounded-r-md pr-3 pl-7 py-1 border-none" wire:model.live="payment.amount">
+                                    </div>
                                 </div>
 
                                 @error('payment.amount')
@@ -359,7 +362,10 @@
                                 </div>
                                 <div class="flex items-center bg-yellow-300 rounded-md">
                                     <span class="w-1/5 ml-3">Down Payment:</span>
-                                    <span class="flex-1 bg-transparent rounded-r-md px-3 py-1 border-none">{{ $payment['amount'] ?? 'N/A' }}</span>
+                                    <div class="flex-1 relative py-1">
+                                        <span class="absolute left-3 top-1">₱</span>
+                                        <span class="w-full bg-transparent rounded-r-md pr-3 pl-7 py-1 border-none">{{ number_format($payment['amount'] ?? 0, 2) }}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

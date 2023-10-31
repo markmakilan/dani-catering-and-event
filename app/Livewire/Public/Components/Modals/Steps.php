@@ -81,7 +81,7 @@ class Steps extends Component
                     'transaction_id' => $transaction->id,
                     'name' => $this->reservation['name'],
                     'contact' => $this->reservation['contact'],
-                    'date_of_use' => $this->reservation['date_of_use'],
+                    'date_of_use' => date('Y-m-d H:i:s', strtotime($this->reservation['date_of_use'])),
                     'location' => $this->reservation['location'],
                     'email' => $this->reservation['email'],
                 ]);

@@ -47,7 +47,10 @@
 
                         <div class="flex items-center border rounded-lg overflow-hidden">
                             <label class="w-2/5 border-r ml-3">Price:</label>
-                            <input type="number" class="flex-1 border-none" wire:model="price">
+                            <div class="flex-1 relative">
+                                <span class="absolute left-3 top-2">₱</span>
+                                <input type="number" class="w-full border-none pl-7" wire:model="price">
+                            </div>
                         </div>
 
                         @error('price')
