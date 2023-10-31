@@ -38,4 +38,5 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('packages', App\Livewire\Admin\Package\Index::class)->name('packages');
     Route::get('gallery', App\Livewire\Admin\Gallery\Index::class)->name('gallery');
     Route::get('banks', App\Livewire\Admin\Bank\Index::class)->name('banks');
+    Route::get('item-types', App\Livewire\Admin\ItemType\Index::class)->name('item-types');
 });
