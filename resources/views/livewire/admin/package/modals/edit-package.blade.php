@@ -86,24 +86,14 @@
                         <div class="border rounded-lg p-3">
                             <p class="font-semibold">Addons:</p>
                             <ul>
+                                @foreach ($item_types->where('type', 'addons') as $key => $item)
                                 <li>
-                                    <label for="update-addons-flower" class="space-x-2">
-                                        <input type="checkbox" id="update-addons-flower" wire:model.live="flowers.addons">
-                                        <span>Flower</span>
+                                    <label for="add-{{ $key }}" class="space-x-2">
+                                        <input type="checkbox" id="add-{{ $key }}" wire:model.live="addon_types.{{ strtolower(str_replace(' ', '_', $item->name)) }}">
+                                        <span>{{ $item->name }}</span>
                                     </label>
                                 </li>
-                                <li>
-                                    <label for="update-addons-chair" class="space-x-2">
-                                        <input type="checkbox" id="update-addons-chair" wire:model.live="chairs.addons">
-                                        <span>Chair</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label for="update-addons-table" class="space-x-2">
-                                        <input type="checkbox" id="update-addons-table" wire:model.live="tables.addons">
-                                        <span>Table</span>
-                                    </label>
-                                </li>
+                                @endforeach
                             </ul>
 
                             <ul>
@@ -135,25 +125,16 @@
                         <div class="border rounded-lg p-3">
                             <p class="font-semibold">Customize:</p>
                             <ul>
+                                @foreach ($item_types->where('type', 'customize') as $key => $item)
                                 <li>
-                                    <label for="update-custom-flower" class="space-x-2">
-                                        <input type="checkbox" id="update-custom-flower" wire:model.live="flowers.customize">
-                                        <span>Flower</span>
+                                    <label for="add-{{ $key }}" class="space-x-2">
+                                        <input type="checkbox" id="add-{{ $key }}" wire:model.live="customize_types.{{ strtolower(str_replace(' ', '_', $item->name)) }}">
+                                        <span>{{ $item->name }}</span>
                                     </label>
                                 </li>
-                                <li>
-                                    <label for="update-custom-chair" class="space-x-2">
-                                        <input type="checkbox" id="update-custom-chair" wire:model.live="chairs.customize">
-                                        <span>Chair</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label for="update-custom-table" class="space-x-2">
-                                        <input type="checkbox" id="update-custom-table" wire:model.live="tables.customize">
-                                        <span>Table</span>
-                                    </label>
-                                </li>
+                                @endforeach
                             </ul>
+                            
                             <ul>
                                 @forelse ($customize as $type => $custom)
                                 <li class="space-y-1">

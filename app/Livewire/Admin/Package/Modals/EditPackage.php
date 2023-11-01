@@ -5,7 +5,7 @@ namespace App\Livewire\Admin\Package\Modals;
 use Livewire\{Component, WithFileUploads};
 use Livewire\Attributes\{On, Rule}; 
 
-use App\Models\{Package, Service};
+use App\Models\{Package, Service, ItemType};
 
 class EditPackage extends Component
 {
@@ -25,18 +25,20 @@ class EditPackage extends Component
     public $inclusions;
     public $status;
 
-    public $flowers = [];
-    public $chairs = [];
-    public $tables = [];
-
     public $package = [];
     public $services = [];
+    public $item_types = [];
+
     public $addons = [];
     public $customize = [];
+
+    public $addon_types = [];
+    public $customize_types = [];
 
     public function mount() 
     {
         $this->services = $this->services()->get();
+        $this->item_types = $this->item_types()->get();
     }
 
     public function update() 
@@ -73,55 +75,40 @@ class EditPackage extends Component
         $this->addons = json_decode(json_encode($package->addons), true) ?? [];
         $this->customize = json_decode(json_encode($package->customize), true) ?? [];
         $this->status = $package->status;
-        
-        $this->flowers = [
-            'addons' => data_get($package->addons, 'flowers') ? true : false,
-            'customize' => data_get($package->customize, 'flowers') ? true : false,
-        ];
 
-        $this->chairs = [
-            'addons' => data_get($package->addons, 'chairs') ? true : false,
-            'customize' => data_get($package->customize, 'chairs') ? true : false,
-        ];
-
-        $this->tables = [
-            'addons' => data_get($package->addons, 'tables') ? true : false,
-            'customize' => data_get($package->customize, 'tables') ? true : false,
-        ];
+        $this->addon_types = array_fill_keys(array_keys((array) $package->addons), true);
+        $this->customize_types = array_fill_keys(array_keys((array) $package->customize), true);
     }
 
     public function updated($key, $value) 
     {
         $keys = explode('.', $key);
 
-        switch ($keys[0]) {
-            case 'flowers':
-            case 'chairs':
-            case 'tables':
-                if ($value) {
-                    
-                    if ($keys[1] == 'addons') {
-                        $this->addons[$keys[0]][] = [
-                            'name' => '',
-                            'price' => 0
-                        ];
-                    }
-                    else {
-                        $this->customize[$keys[0]][] = [
-                            'name' => '',
-                            'price' => 0
-                        ];
-                    }
+        if (in_array($keys[0], ['addon_types', 'customize_types'])) {
+
+            if ($value) {
+                        
+                if ($keys[0] == 'addon_types') {
+                    $this->addons[$keys[1]][] = [
+                        'name' => '',
+                        'price' => 0
+                    ];
                 }
                 else {
-                    if ($keys[1] == 'addons') {
-                        unset($this->addons[$keys[0]]);
-                    }
-                    else {
-                        unset($this->customize[$keys[0]]);
-                    }
+                    $this->customize[$keys[1]][] = [
+                        'name' => '',
+                        'price' => 0
+                    ];
                 }
-                break;
+            }
+            else {
+                if ($keys[0] == 'addon_types') {
+                    unset($this->addons[$keys[1]]);
+                }
+                else {
+                    unset($this->customize[$keys[1]]);
+                }
+            }
         }
     }
 
@@ -166,6 +153,11 @@ class EditPackage extends Component
     public function services() 
     {
         return Service::where('status', true);
+    }
+
+    public function item_types() 
+    {
+        return ItemType::where('status', true);
     }
 
     public function render()

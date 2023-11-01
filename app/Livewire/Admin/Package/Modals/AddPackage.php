@@ -7,7 +7,7 @@ use Livewire\Attributes\Rule;
 
 use Illuminate\Support\Str;
 
-use App\Models\{Package, Service};
+use App\Models\{Package, Service, ItemType};
 
 class AddPackage extends Component
 {
@@ -27,56 +27,55 @@ class AddPackage extends Component
     public $no_of_pax;
     public $inclusions;
 
-    public $flowers = [];
-    public $chairs = [];
-    public $tables = [];
-
     public $services = [];
+    public $item_types = [];
+
     public $addons = [];
     public $customize = [];
+
+    public $addon_types = [];
+    public $customize_types = [];
 
     public function mount() 
     {
         $this->services = $this->services()->get();
+        $this->item_types = $this->item_types()->get();
     }
 
     public function updated($key, $value) 
     {
         $keys = explode('.', $key);
 
-        switch ($keys[0]) {
-            case 'flowers':
-            case 'chairs':
-            case 'tables':
-                if ($value) {
-                    
-                    if ($keys[1] == 'addons') {
-                        $this->addons[$keys[0]][] = [
-                            'name' => '',
-                            'price' => 0
-                        ];
-                    }
-                    else {
-                        $this->customize[$keys[0]][] = [
-                            'name' => '',
-                            'price' => 0
-                        ];
-                    }
+        if (in_array($keys[0], ['addon_types', 'customize_types'])) {
+
+            if ($value) {
+                        
+                if ($keys[0] == 'addon_types') {
+                    $this->addons[$keys[1]][] = [
+                        'name' => '',
+                        'price' => 0
+                    ];
                 }
                 else {
-                    if ($keys[1] == 'addons') {
-                        unset($this->addons[$keys[0]]);
-                    }
-                    else {
-                        unset($this->customize[$keys[0]]);
-                    }
+                    $this->customize[$keys[1]][] = [
+                        'name' => '',
+                        'price' => 0
+                    ];
                 }
-                break;
+            }
+            else {
+                if ($keys[0] == 'addon_types') {
+                    unset($this->addons[$keys[1]]);
+                }
+                else {
+                    unset($this->customize[$keys[1]]);
+                }
+            }
         }
     }
 
     public function save() 
-    {   
+    {
         if ($this->validate()) {
             $package = Package::create([
                 'name' => $this->name,
@@ -109,7 +108,7 @@ class AddPackage extends Component
         if (count($this->addons[$type]) == 0) {
             unset($this->addons[$type]);
 
-            $this->$type['addons'] = false;
+            $this->addon_types[$type] = false;
         }
     }
 
@@ -128,13 +127,18 @@ class AddPackage extends Component
         if (count($this->customize[$type]) == 0) {
             unset($this->customize[$type]);
 
-            $this->$type['customize'] = false;
+            $this->customize_types[$type] = false;
         }
     }
 
     public function services() 
     {
         return Service::where('status', true);
+    }
+
+    public function item_types() 
+    {
+        return ItemType::where('status', true);
     }
 
     public function render()
