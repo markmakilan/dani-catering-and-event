@@ -25,6 +25,7 @@ class AddPackage extends Component
     public $service_id;
     #[Rule('required|numeric|gt:0')]
     public $no_of_pax;
+    #[Rule('required')]
     public $inclusions;
 
     public $services = [];

@@ -74,6 +74,10 @@
                             </div>
                         </div>
 
+                        @error('inclusions')
+                        <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
+                        @enderror
+
                         <div class="flex items-center border rounded-lg overflow-hidden">
                             <label class="w-2/5 border-r ml-3">Status:</label>
                             <select class="flex-1 border-none w-full" wire:model="status">

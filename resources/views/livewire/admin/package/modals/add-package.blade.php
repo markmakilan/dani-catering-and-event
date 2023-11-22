@@ -72,6 +72,10 @@
                                 <textarea id="add-inclusions" cols="30" rows="5" class="w-full border-none focus:ring-0 p-0" wire:model="inclusions"></textarea>
                             </div>
                         </div>
+
+                        @error('inclusions')
+                        <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="col-span-2 md:col-span-1 border rounded-md p-3 space-y-3">
                         <div class="border rounded-lg p-3">
