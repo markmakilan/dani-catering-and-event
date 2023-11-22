@@ -4,7 +4,7 @@
         <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
             <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
                 <div
-                    class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-6xl">
+                    class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all my-8 w-full">
                     @if($package)
                     <div x-show="step == 'confirmation'">
                         <div class="bg-white p-4 sm:p-6 sm:pb-4">
@@ -39,9 +39,9 @@
                             <div class="space-3 border border-black rounded-lg overflow-hidden p-3">
                                 <h3 class="text-xl font-bold text-center mb-10">Our Services</h3>
                     
-                                <ul class="flex border rounded-md divide-x py-3">
+                                <div class="grid grid-cols-12">
                                     @forelse ($addons as $type => $addon)
-                                    <li class="p-3">
+                                    <div class="col-span-12 md:col-span-4 p-3">
                                         <span class="text-lg font-semibold capitalize">{{ $type }}</span>
                                         <ul class="space-y-2">
                                             @foreach ($addon as $key => $item)
@@ -59,10 +59,10 @@
                                             </li>
                                             @endforeach
                                         </ul>
-                                    </li>
+                                    </div>
                                     @empty
                                     @endforelse
-                                </ul>
+                                </div>
                             </div>
                         </div>
                         <div class="bg-gray-50 px-4 py-3 sm:px-6">

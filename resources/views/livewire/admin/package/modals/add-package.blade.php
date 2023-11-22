@@ -10,7 +10,7 @@
                 <div class="border-b"></div>
 
                 <div class="grid grid-cols-2 gap-3">
-                    <div class="border rounded-md p-3 space-y-3">
+                    <div class="col-span-2 md:col-span-1 border rounded-md p-3 space-y-3">
                         <div class="flex items-center border rounded-lg overflow-hidden py-1">
                             <label class="w-2/5 border-r ml-3">Photo:</label>
                             <input id="profile" type="file" class="flex-1" wire:model="file">
@@ -73,7 +73,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="border rounded-md p-3 space-y-3">
+                    <div class="col-span-2 md:col-span-1 border rounded-md p-3 space-y-3">
                         <div class="border rounded-lg p-3">
                             <p class="font-semibold">Addons:</p>
                             <ul>

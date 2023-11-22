@@ -10,7 +10,7 @@
                 <div class="border-b"></div>
 
                 <div class="grid grid-cols-2 gap-3">
-                    <div class="border rounded-md p-3 space-y-3">
+                    <div class="col-span-2 md:col-span-1 border rounded-md p-3 space-y-3">
                         <div class="flex items-center gap-3 p-3 border rounded-lg overflow-hidden">
                             @if ($package)
                                 <img class="h-auto w-2/5" src="{{ asset($package->getFirstMediaUrl('packages')) }}">
@@ -82,7 +82,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="border rounded-md p-3 space-y-3">
+                    <div class="col-span-2 md:col-span-1 border rounded-md p-3 space-y-3">
                         <div class="border rounded-lg p-3">
                             <p class="font-semibold">Addons:</p>
                             <ul>

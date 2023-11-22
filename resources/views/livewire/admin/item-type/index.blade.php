@@ -21,30 +21,32 @@
                 wire:model.live="search">
         </div>
 
-        <table class="min-w-full divide-y divide-gray-300">
-            <thead>
-                <tr>
-                    <th scope="col" class="py-3.5 bg-gray-200 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">Name</th>
-                    <th scope="col" class="py-3.5 bg-gray-200 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">Type</th>
-                    <th scope="col" class="py-3.5 bg-gray-200 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">Status</th>
-                    <th scope="col" class="px-3 py-3.5 bg-gray-200 text-left text-sm font-semibold text-gray-900">Action</th>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-200 bg-white">
-                @forelse ($item_types as $item_type)
-                <tr>
-                    <td class="px-3 py-2 text-sm text-gray-500">{{ $item_type->name }}</td>
-                    <td class="px-3 py-2 text-sm text-gray-500 capitalize">{{ $item_type->type }}</td>
-                    <td class="px-3 py-2 text-sm text-gray-500">{{ $item_type->status ? 'Active' : 'Inactive' }}</td>
-                    <td class="px-3 py-2 text-sm text-gray-500">
-                        <button wire:click="toggleEditItemTypeModal({{ $item_type->id }})">Edit</button>
-                    </td>
-                </tr>
-                @empty
-                    
-                @endforelse
-            </tbody>
-        </table>
+        <div class="overflow-auto">
+            <table class="min-w-full divide-y divide-gray-300">
+                <thead>
+                    <tr>
+                        <th scope="col" class="py-3.5 bg-gray-200 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">Name</th>
+                        <th scope="col" class="py-3.5 bg-gray-200 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">Type</th>
+                        <th scope="col" class="py-3.5 bg-gray-200 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">Status</th>
+                        <th scope="col" class="px-3 py-3.5 bg-gray-200 text-left text-sm font-semibold text-gray-900">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 bg-white">
+                    @forelse ($item_types as $item_type)
+                    <tr>
+                        <td class="px-3 py-2 text-sm text-gray-500">{{ $item_type->name }}</td>
+                        <td class="px-3 py-2 text-sm text-gray-500 capitalize">{{ $item_type->type }}</td>
+                        <td class="px-3 py-2 text-sm text-gray-500">{{ $item_type->status ? 'Active' : 'Inactive' }}</td>
+                        <td class="px-3 py-2 text-sm text-gray-500">
+                            <button wire:click="toggleEditItemTypeModal({{ $item_type->id }})">Edit</button>
+                        </td>
+                    </tr>
+                    @empty
+                        
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
 
     @livewire('admin.item-type.modals.add-item-type', ['modal' => 'add_item_type_modal'])

@@ -21,33 +21,35 @@
                 wire:model.live="search">
         </div>
 
-        <table class="min-w-full divide-y divide-gray-300">
-            <thead>
-                <tr>
-                    <th scope="col" class="py-3.5 bg-gray-200 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">Photo</th>
-                    <th scope="col" class="py-3.5 bg-gray-200 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">Name</th>
-                    <th scope="col" class="py-3.5 bg-gray-200 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">Status</th>
-                    <th scope="col" class="px-3 py-3.5 bg-gray-200 text-left text-sm font-semibold text-gray-900">Action</th>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-200 bg-white">
-                @forelse ($services as $service)
-                <tr>
-                    <td
-                        class="w-full max-w-0 py-2 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none">
-                        <img src="{{ asset($service->getFirstMedia('services')->getUrl()) }}" class="w-auto h-14">
-                    </td>
-                    <td class="px-3 py-2 text-sm text-gray-500">{{ $service->name }}</td>
-                    <td class="px-3 py-2 text-sm text-gray-500">{{ $service->status ? 'Active' : 'Inactive' }}</td>
-                    <td class="px-3 py-2 text-sm text-gray-500">
-                        <button wire:click="toggleEditServiceModal({{ $service->id }})">Edit</button>
-                    </td>
-                </tr>
-                @empty
-                    
-                @endforelse
-            </tbody>
-        </table>
+        <div class="overflow-auto">
+            <table class="min-w-full divide-y divide-gray-300">
+                <thead>
+                    <tr>
+                        <th scope="col" class="py-3.5 bg-gray-200 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">Photo</th>
+                        <th scope="col" class="py-3.5 bg-gray-200 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">Name</th>
+                        <th scope="col" class="py-3.5 bg-gray-200 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">Status</th>
+                        <th scope="col" class="px-3 py-3.5 bg-gray-200 text-left text-sm font-semibold text-gray-900">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 bg-white">
+                    @forelse ($services as $service)
+                    <tr>
+                        <td
+                            class="w-full max-w-0 py-2 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none">
+                            <img src="{{ asset($service->getFirstMedia('services')->getUrl()) }}" class="w-auto h-14">
+                        </td>
+                        <td class="px-3 py-2 text-sm text-gray-500">{{ $service->name }}</td>
+                        <td class="px-3 py-2 text-sm text-gray-500">{{ $service->status ? 'Active' : 'Inactive' }}</td>
+                        <td class="px-3 py-2 text-sm text-gray-500">
+                            <button wire:click="toggleEditServiceModal({{ $service->id }})">Edit</button>
+                        </td>
+                    </tr>
+                    @empty
+                        
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
 
     @livewire('admin.service.modals.add-service', ['modal' => 'add_service_modal'])

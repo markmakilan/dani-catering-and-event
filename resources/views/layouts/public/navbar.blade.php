@@ -1,7 +1,7 @@
 <nav class="bg-black rounded-2xl mx-8 my-1 fixed top-0 left-0 right-0 z-10"
     x-data="menu">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
-        <div class="flex h-16 items-center justify-between gap-56">
+        <div class="flex h-16 items-center justify-between gap-5">
             <div class="flex items-center">
                 <div class="flex-shrink-0">
                     <img class="h-20 w-auto" src="{{ asset('assets/img/logo.png') }}"

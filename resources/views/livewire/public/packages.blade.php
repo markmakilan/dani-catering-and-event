@@ -3,7 +3,7 @@
         <div class="mx-auto max-w-7xl px-6 lg:px-8 pb-20">
             <div class="grid grid-cols-12 gap-3">
                 @forelse ($packages as $value)
-                <div class="col-span-6">
+                <div class="col-span-12 md:col-span-6">
                     <div x-data="{ checked: false }" class="space-y-2">
                         <div class="flex items-center justify-between">
                             <label for="package-{{ $value->id }}" class="flex items-center gap-2">
